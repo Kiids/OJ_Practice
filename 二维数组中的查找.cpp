@@ -2,10 +2,10 @@
 // 请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 class Solution {
 public:
-    bool Find(int target, vector<vector<int> > array) {
-        int row = (int)array.size();
-        int col = (int)array[0].size();
-        if (row == 0 || col == 0)
+    bool Find(int target, vector<vector<int> > array) { 
+        int row = (int)array.size(); 
+        int col = (int)array[0].size(); 
+        if (row == 0 || col == 0) 
             return false;
         if (target < array[0][0] || target > array[row - 1][col - 1])
             return false;
