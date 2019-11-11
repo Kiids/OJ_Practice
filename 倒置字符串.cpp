@@ -89,6 +89,9 @@ int main()
 
 #if 1
 // 思路三 巧用cin 牛客OJ可以过但是VS2013输出时会触发异常 
+// 需要按ctrl+Z 然后回车 用于终止输入
+// 在 Windows 系统中，通过键盘输入时，按 Ctrl+Z 组合键后再按回车键，就代表输入结束 
+// 在 UNIX/Linux/Mac OS 系统中，Ctrl+D 代表输入结束 
 #include <iostream>
 #include <string>
 using namespace std;
