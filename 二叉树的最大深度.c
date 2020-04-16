@@ -27,3 +27,34 @@ int maxDepth(struct TreeNode* root){
     return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
 }
 
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (root == nullptr)
+            return 0;
+
+        int left = 0, right = 0;
+        left += maxDepth(root->left);
+        right += maxDepth(root->right);
+        
+        return max(left, right) + 1;
+    }
+};
+
+
+void maxdepthTraverse(struct TreeNode *root,int depth,int *maxdepth)
+{
+    if(root==NULL)
+        return ;
+    if(depth > *maxdepth)//递归过程中进行判断
+        *maxdepth=depth;
+    maxdepthTraverse(root->left,depth+1,maxdepth);
+    maxdepthTraverse(root->right,depth+1,maxdepth);
+//虽然会回溯但是不会起任何作用，这里递归是往里树下走树高度就+1，并作出判断
+}
+int maxDepth(struct TreeNode* root){
+    int maxdep=0;
+    maxdepthTraverse(root,1,&maxdep);
+    return maxdep;
+}
+
