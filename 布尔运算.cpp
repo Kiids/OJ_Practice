@@ -3,7 +3,7 @@
 示例 1:
 输入: s = "1^0|0|1", result = 0
 输出: 2
-解释:?两种可能的括号方法是
+解释: 两种可能的括号方法是
 1^(0|(0|1))
 1^((0|0)|1)
 示例 2:
@@ -16,7 +16,7 @@
 class Solution {
 public:
     int countEval(string s, int result) {
-        int len=s.size();
+        int len = s.size();
         vector<int> A;
         vector<char> opt;
         for (int i = 0; i < len; i++)
@@ -27,34 +27,34 @@ public:
         int n = A.size();
         int F[n][n][2];
         for (int i = 0; i < n; i++)
-            F[i][i][A[i]]=1,F[i][i][A[i]^1]=0;
-        for (int l=2;l<=n;++l)
+            F[i][i][A[i]] = 1, F[i][i][A[i]^1] = 0;
+        for (int l = 2; l <= n; l++)
         {
-            for (int i=0;i+l-1<n;++i)
+            for (int i = 0; i + l - 1 < n; i++)
             {
-                int j=i+l-1;
-                F[i][j][0]=F[i][j][1]=0;
-                for (int k=i;k<j;++k)
-                    if (opt[k]=='&')
+                int j = i + l - 1;
+                F[i][j][0] = F[i][j][1] = 0;
+                for (int k = i; k < j; k++)
+                    if (opt[k] == '&')
                     {
-                        F[i][j][1]+=F[i][k][1]*F[k+1][j][1];
-                        F[i][j][0]+=F[i][k][1]*F[k+1][j][0];
-                        F[i][j][0]+=F[i][k][0]*F[k+1][j][1];
-                        F[i][j][0]+=F[i][k][0]*F[k+1][j][0];
+                        F[i][j][1] += F[i][k][1] * F[k+1][j][1];
+                        F[i][j][0] += F[i][k][1] * F[k+1][j][0];
+                        F[i][j][0] += F[i][k][0] * F[k+1][j][1];
+                        F[i][j][0] += F[i][k][0] * F[k+1][j][0];
                     }
-                    else if (opt[k]=='|')
+                    else if (opt[k] == '|')
                     {
-                        F[i][j][1]+=F[i][k][1]*F[k+1][j][1];
-                        F[i][j][1]+=F[i][k][1]*F[k+1][j][0];
-                        F[i][j][1]+=F[i][k][0]*F[k+1][j][1];
-                        F[i][j][0]+=F[i][k][0]*F[k+1][j][0];
+                        F[i][j][1] += F[i][k][1] * F[k+1][j][1];
+                        F[i][j][1] += F[i][k][1] * F[k+1][j][0];
+                        F[i][j][1] += F[i][k][0] * F[k+1][j][1];
+                        F[i][j][0] += F[i][k][0] * F[k+1][j][0];
                     }
                     else
                     {
-                        F[i][j][0]+=F[i][k][1]*F[k+1][j][1];
-                        F[i][j][1]+=F[i][k][1]*F[k+1][j][0];
-                        F[i][j][1]+=F[i][k][0]*F[k+1][j][1];
-                        F[i][j][0]+=F[i][k][0]*F[k+1][j][0];
+                        F[i][j][0] += F[i][k][1] * F[k+1][j][1];
+                        F[i][j][1] += F[i][k][1] * F[k+1][j][0];
+                        F[i][j][1] += F[i][k][0] * F[k+1][j][1];
+                        F[i][j][0] += F[i][k][0] * F[k+1][j][0];
                     }
             }
         }
