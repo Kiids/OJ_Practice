@@ -29,10 +29,35 @@ public:
     }
 };
 
-递归关系f(n)=a0+1/f(n-1);n表示原数列，n-1表示原数列除掉第一个元素的数列
-进一步:设f(n-1)=t1/t2,那么f(n)=a0+t2/t1=(a0*t1+t2)/t1
-递归终止条件:n=1时。
-题目中要求分子，分母互质，其实这必然互质，因为考虑最后两个数t(n-1)+1/t(n)，
-分式是[t(n-1)t(n)+1]/t(n),分子是分母的整数倍加1，这必然是互质的，往前推，
-设a/b中a,b是互质数，c为整数，那么c+b/a=(ca+b)/a,显然ca+b与a必然也互质的。
-证明:假设(ca+b)/a = np/mp =(cmp+b)/mp,则b=(n-cm)p,此时a,b有公约数p，矛盾。
+// 递归关系f(n)=a0+1/f(n-1);n表示原数列，n-1表示原数列除掉第一个元素的数列
+// 进一步:设f(n-1)=t1/t2,那么f(n)=a0+t2/t1=(a0*t1+t2)/t1
+// 递归终止条件:n=1时。
+// 题目中要求分子，分母互质，其实这必然互质，因为考虑最后两个数t(n-1)+1/t(n)，
+// 分式是[t(n-1)t(n)+1]/t(n),分子是分母的整数倍加1，这必然是互质的，往前推，
+// 设a/b中a,b是互质数，c为整数，那么c+b/a=(ca+b)/a,显然ca+b与a必然也互质的。
+// 证明:假设(ca+b)/a = np/mp =(cmp+b)/mp,则b=(n-cm)p,此时a,b有公约数p，矛盾。
+class Solution {
+public:
+    vector<int> fraction(vector<int>& cont) {
+        if (cont.size() == 1)
+            return { cont[0],1 };
+        vector<int>b(cont.begin()+1, cont.end());
+        int t1 = fraction(b)[0];
+        int t2 = fraction(b)[1];
+        int m = cont[0]*t1+t2;
+        int n = t1;
+        return
+        { m,n };
+    }
+};
+// 优化一下，上面代码为了获得两个值执行了两次fraction，可以用一个数组存储
+class Solution {
+public:
+    vector<int> fraction(vector<int>& cont) {
+        if (cont.size() == 1)
+            return { cont[0],1 };
+        vector<int>b(cont.begin()+1, cont.end());
+        vector<int> t = fraction(b);
+        return {cont[0]*t[0]+t[1],t[0]};
+    }
+};
