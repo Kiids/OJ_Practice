@@ -23,14 +23,13 @@ nums[i] 的值为 0 或 1
 class Solution {
 public:
     bool kLengthApart(vector<int>& nums, int k) {
-        int n = k + 1;
-        vector<int> v(2, -k - 1);
+        int n = k + 1, x = -k - 1;
         for (int i = 0; i < nums.size(); i++)
         {
             if (nums[i] == 1)
             {
-                n = i - v[1];   
-                v[1] = i;
+                n = i - x;   
+                x = i;
                 if (n < k + 1)
                     return false;
             }
