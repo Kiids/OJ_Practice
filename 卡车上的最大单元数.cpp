@@ -25,13 +25,13 @@ numberOfUnitsPerBoxi 是类型 i 每个箱子可以装载的单元数量。
 class Solution {
 public:
     int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
-        sort(b.begin(), b.end(), [](const auto& L, const auto& R){return L[1] > R[1];});
+        sort(boxTypes.begin(), boxTypes.end(), [](const auto& L, const auto& R){return L[1] > R[1];});
         int ret = 0, n = 0;
-        for (int i = 0; i < b.size() && s > 0; i++)
+        for (int i = 0; i < boxTypes.size() && truckSize > 0; i++)
         {
-            n = min(s, b[i][0]);
-            s -= n;
-            ret += n * b[i][1];
+            n = min(truckSize, boxTypes[i][0]);
+            truckSize -= n;
+            ret += n * boxTypes[i][1];
         }
         return ret;
     }
