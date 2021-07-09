@@ -49,3 +49,26 @@ public:
         return DFS(root->left, root->val);
     }
 };
+
+class Solution {
+public:
+    TreeNode* convertBST(TreeNode* root) {
+        stack<TreeNode*> s;
+        TreeNode* cur = root;
+        int n = 0;
+        while (cur != nullptr || !s.empty())
+        {
+            while (cur != nullptr)
+            {
+                s.push(cur);
+                cur = cur->right;
+            }
+            cur = s.top();
+            s.pop();
+            n += cur->val;
+            cur->val = n;
+            cur = cur->left;
+        }
+        return root;
+    }
+};
