@@ -26,6 +26,17 @@
 s1, s2 只包含 'x' 或 'y'。
 */
 
+/*
+x~y: 数量为numXY
+y~x: 数量为numYX
+xx~yy -> 一次交换
+yy~xx -> 一次交换
+xy~yx -> 两次交换
+优先把 numXY和numYX 用一次交换处理掉，对应数量就是 numXY/2 + numYX/2
+剩下就是单个或者0个， 需要两次 (numXY%2)*2
+失败情况：如果只有x~y或者y~x一对
+*/
+
 class Solution {
 public:
     int minimumSwap(string s1, string s2) {
