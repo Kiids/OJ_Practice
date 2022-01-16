@@ -39,7 +39,7 @@ public:
             int t = m.begin()->second;
             for (auto i : flag)
                 if (t < i)
-            sum++;
+            		sum++;
             ret.emplace_back(sum);
         }
         return ret;
