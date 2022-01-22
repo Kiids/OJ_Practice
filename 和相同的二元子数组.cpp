@@ -25,9 +25,11 @@ public:
         {
             n += e;
             if (m[n - goal])
-                ret += m[n - goal];
+                ret += m[n - goal];  // 假设我们枚举到nums[i]，我们只需要查询哈希表中元素 sum[i]-goal 的数量即可
             m[n]++;
         }
         return ret;
     }
 };
+// 哈希存储前缀和
+// 遇到合适的就累加
