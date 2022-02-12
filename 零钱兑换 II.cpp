@@ -28,16 +28,18 @@ coins 中的所有值 互不相同
 class Solution {
 public:
     int change(int amount, vector<int>& coins) {
-        int n = coins.size();
-        vector<vector<int>> dp(n + 1, vector<int>(amount + 1 , 0));
-        dp[0][0] = 1;
-        for(int i = 1; i <= n; i++)
-        {
-            int v =coins[i - 1];
-            for (int j = 0; j <= amount; j++)
-                 for (int k = 0; k * v <= j; k++)
-                   dp[i][j] += dp[i-1][j - k * v];
-        }
-        return dp[n][amount];
+        vector<int> dp(amount + 1, 0);
+        dp[0] = 1;
+        for(int coin : coins)
+            for(int i = coin; i <= amount; i++)
+                dp[i] += dp[i - coin];
+        return dp[amount];
     }
 };
+
+//计算可能的组合数。用 dp[x] 表示金额之和等于 x 的硬币组合数，目标是求 dp[amount]。
+//边界 dp[0]=1。当不选取任何硬币时，金额之和为 0，只有 1 种硬币组合。
+//面额 coin 的硬币，当 coin≤i≤amount 时，如果存在一种硬币组合的金额之和等于 i - coin，
+//则在该硬币组合中增加一个面额为 coin 的硬币，即可得到一种金额之和等于 i 的硬币组合。
+//需要遍历 coins，对于每一种面额的硬币，更新数组 dp 中的每个大于或等于该面额的元素的值。
+
