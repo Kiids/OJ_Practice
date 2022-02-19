@@ -22,9 +22,12 @@ public:
             sum += nums[i];
         if (sum % 2 == 1)
             return false;
-        for (int i = 0; i < nums.size(); i++)
+        // 背包体积sum/2
+        // 物品是sum中的元素，数值等于重量
+        // 物品不可以重复放入
+        for (int i = 0; i < nums.size(); i++)  // 遍历物品
             for (int j = sum / 2; j >=nums[i] ; j--)
-                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]);
+                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]);  // 递推公式,nums[i]既是重量又是价值
         if (dp[sum / 2] == sum / 2)
             return true;
         return false;
