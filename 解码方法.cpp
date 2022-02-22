@@ -50,3 +50,7 @@ public:
         return cur;
     }
 };
+
+//dp[i]=dp[i-1]+dp[i-2]
+//cur=pre+cur£»
+//Òþº¬else cur=cur£»cur²»±ä¡£dp[i]=dp[i-1]
