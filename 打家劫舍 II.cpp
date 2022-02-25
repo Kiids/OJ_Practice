@@ -38,3 +38,5 @@ public:
         return max(dp1[n - 1], dp2[0]);
     }
 };
+
+//选择nums数组的0~nums.length()-2与nums.length()-1~1两部分，分别进行一次动态规划,可以避开nums首尾元素之间的联系
