@@ -26,18 +26,18 @@ public:
             return 0;
 
         int ret = 0;
-        unordered_map<int, int> m;
+        unordered_map<int, int> m;         // <数字， 说了这个数字的兔子数量>
         for (int e : answers)
         {
-            if (!m.count(e) || m[e] == 0)
+            if (!m.count(e) || m[e] == 0)  // 没有记录或当前数字的兔子数量为0时
             {
                 ret += e + 1;
                 m[e]++ ;
             }
             else if (m.count(e))
                 m[e] ++ ;
-            if (m[e] == e + 1)
-                m[e] = 0;
+            if (m[e] == e + 1)             // 当兔子数量等于数字时，表示达到该种颜色所能代表的数量上限
+                m[e] = 0;                  // 重置兔子数量为零，若再遇到相同数字，需要开另一种颜色来存
         }
         return ret;
     }
