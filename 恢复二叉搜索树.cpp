@@ -34,11 +34,16 @@ public:
         {
             if (root->left)
             {
+            	// 寻找左子树中最右节点（也可以是左子树根节点）
+                // 就是中序遍历中根节点之前的点
+                // 名为predecessor（前任）
                 predecessor=root->left;
                 while (predecessor->right && predecessor->right != root)
                     predecessor = predecessor->right;
+                // 如果存在，说明之前已经搭好桥了，这一步需要拆桥，因为需要还原树结构
                 if (predecessor->right)
                     predecessor->right = nullptr;
+                // 搭桥，这样就可以直接找到root
                 else
                 {
                     predecessor->right = root;
@@ -46,6 +51,7 @@ public:
                     continue;
                 }
             }
+            // 遍历中的比较部分
             if (pre && pre->val>root->val)
             {
                 later = root;
