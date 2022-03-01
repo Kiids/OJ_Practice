@@ -48,20 +48,21 @@ public:
         while (root)
         {
             v.push_back(root);
-            root = root->left;
+            root = root->left;     // 在二叉搜索树的中序遍历中，最小的元素位于树的最左下角，其遍历后所得到的序列是单调递增的
+                                   // 一直搜索至树中最小的元素（即树中最左下角的元素）
         }
     }
     
     int next() {
-        TreeNode* cur = v.back();
+        TreeNode* cur = v.back();  // 当前树中最小的元素
         int val = cur->val;
         v.pop_back();
 
-        cur  = cur->right;
+        cur  = cur->right;         // 最左下角元素的右子树
         while (cur)
         {
             v.push_back(cur);
-            cur = cur->left;
+            cur = cur->left;       // 再次遍历其左子树
         }
         return val;
     }
