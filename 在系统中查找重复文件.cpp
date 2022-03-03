@@ -37,7 +37,7 @@ public:
             {
                 iss >> file;
                 int index = file.find('(');
-                string content = file.substr(index + 1, file.size() - index - 2);
+                string content = file.substr(index + 1, file.size() - 1);
                 m[content].push_back(dir + "/" + file.substr(0, index));
             }
         }
