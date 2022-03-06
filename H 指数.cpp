@@ -35,3 +35,25 @@ public:
         return l;
     }
 };
+
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int sum = 0;
+        vector<int> v(citations.size() + 1);
+        for (int i = 0; i < citations.size(); i++)
+        {
+            if (citations[i] >= citations.size())
+                v[citations.size()]++;
+            else 
+                v[citations[i]]++;
+        }
+        for (int i = citations.size(); i >= 0; i--)  // 要求h指数尽可能大，所以从后往前遍历
+        {
+            sum += v[i];
+            if (sum >= i)             // 满足条件跳出
+                return i;
+        }
+        return 0;
+    }
+};
