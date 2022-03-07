@@ -44,3 +44,10 @@ public:
 //upper_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于num的数字，
 //找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。
 
+
+//right 指针每次后移，如果发现 set 的大小大于 k ，则需要把 nums[left] 从 set 中删除；
+//查找 set 中是否有大于等于 nums[right] - t 的元素，如果有的话，
+//说明在大小不超过为 k 的窗口内有绝对值差小于等于 t 的两个元素，返回 true。
+//如果把 nums 遍历了一遍仍然没有结果，则返回 false。
+
+
