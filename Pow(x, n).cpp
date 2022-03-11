@@ -30,3 +30,6 @@ public:
         return N >= 0 ? fun(x, N) : 1.0 / fun(x, - N);
     }
 };
+
+//快速幂
+//如果n为偶数，则x = y * y，如果n为奇数，则x = y * y * x
