@@ -34,7 +34,7 @@ public:
         vector<vector<int>> v;
         for (int i = 1; i < N; i++)
         {
-            if(__builtin_popcount(i) != k)
+            if(__builtin_popcount(i) != k)  // __builtin_popcount计算一个 32 位无符号整数有多少个位为1
                 continue;
             else
             {
@@ -43,10 +43,12 @@ public:
                 for (int j = 0; j < 9; j++)
                     if (i & (1 << j))
                         a.push_back(j + 1);
-                if (accumulate(a.begin(), a.end(), 0) == n)
+                if (accumulate(a.begin(), a.end(), 0) == n)  // accumulate前两个形参指定要累加的元素范围，第三个形参则是累加的初值
                     v.push_back(a);
             }
         }
         return v;
     }
 };
+
+// 位运算，枚举每一种方式，检查其合法性并加入答案中
