@@ -26,7 +26,7 @@
 class Solution {
 public:
     int leastMinutes(int n) {
-        return ceil(log(n) / log(2)) + 1;
+        return ceil(log(n) / log(2)) + 1;  // double ceil(double x)返回大于或者等于指定表达式的最小整数
     }
 };
 
