@@ -28,52 +28,23 @@ public:
         if (k == 0)
             return {};
 		vector<int> v;
-		deque<size_t> window;
+		deque<size_t> window;  // 双向队列保存当前窗口最大值的数组位置 队列中数组位置的数值从大到小排序
 		for (size_t i = 0; i < k; i++)
         {
-			while (!window.empty()  && nums[i] > nums[window.back()])
+			while (!window.empty() && nums[i] > nums[window.back()])  // 从大到小 如果前面数小则需要弹出，直至满足要求
 				window.pop_back();
-			window.push_back(i);
+			window.push_back(i);  // 添加当前值对应的数组下标
 		}
 		v.push_back(nums[window.front()]);
 		for (size_t i = k; i < nums.size(); i++)
         {
-			if (!window.empty() && window.front() <= i - k)
+			if (!window.empty() && window.front() <= i - k)  // 判断当前队列中队首的值是否有效
 				window.pop_front();
 			while (!window.empty() && nums[i] > nums[window.back()])
 				window.pop_back();
 			window.push_back(i);
-			v.push_back(nums[window.front()]);
+			v.push_back(nums[window.front()]);  // 窗口长度 k  保存当前窗口中最大值
 		}
 		return v;
-    }
-};
-
-
-class Solution {
-public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        if (nums == null || nums.length < 2)
-            return nums;
-        // 双向队列 保存当前窗口最大值的数组位置 保证队列中数组位置的数值按从大到小排序
-        LinkedList<Integer> queue = new LinkedList();
-        // 结果数组
-        int[] result = new int[nums.length-k+1];
-        // 遍历nums数组
-        for (int i = 0; i < nums.length; i++)
-        {
-            // 保证从大到小 如果前面数小则需要依次弹出，直至满足要求
-            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i])
-                queue.pollLast();
-            // 添加当前值对应的数组下标
-            queue.addLast(i);
-            // 判断当前队列中队首的值是否有效
-            if (queue.peek() <= i - k)
-                queue.poll();
-            // 当窗口长度为k时 保存当前窗口中最大值
-            if (i + 1 >= k)
-                result[i + 1 - k] = nums[queue.peek()];
-        }
-        return result;
     }
 };
