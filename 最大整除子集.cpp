@@ -42,3 +42,9 @@ public:
         return v;
     }
 };
+
+//dp[i]：表示以nums[i]为结尾的最大的整除子集的大小 （这里nums已排序）
+//转移方程：类似LIS（最大上升子序列）
+//对于nums[i]，需要检查[0,i-1]位上的nums[j]，使得nums[i] % nums[j] == 0，即nums[j]是nums[i]的一个因数。
+//得到算式
+//dp[i] = max{j∈[0,i-1]} (dp[j]+1), if nums[i]%nums[j] == 0
