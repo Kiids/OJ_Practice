@@ -59,3 +59,9 @@ public:
         return false;
     }
 };
+
+//快慢指针
+//枚举起点
+//fast指针速度是slow指针的两倍，所以，当slow指针走了一半的时候，对应fast指针追上slow指针
+//若含链尾自环，返回：true，否则，继续寻找
+
