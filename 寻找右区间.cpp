@@ -51,3 +51,6 @@ public:
         return ret;
     }
 };
+
+//pair数组v, pair的first为区间左下标，second为区间编号；对v排序
+//对intervals中每个区间的右下标，利用二分搜索在v中查找第一个first大于等于该右下标的pair，并返回pair的second
