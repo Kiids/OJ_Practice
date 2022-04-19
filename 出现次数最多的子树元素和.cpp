@@ -31,7 +31,7 @@ class Solution {
     {
         if (root == NULL)
             return 0;
-        int sum = root->val;
+        int sum = root->val;    // sum表示以root为根的树的元素和，后序遍历，向上返回子树元素和
         sum += DFS(root->left);   
         sum += DFS(root->right);
         m[sum]++;
