@@ -28,7 +28,7 @@ public:
     
     vector<double> randPoint() {
         while(true)
-        {   //初始值为正方形的左下角 + 随机值
+        {   //初始值为正方形的左下角 + 随机值，RAND_MAX 是 <stdlib.h> 中伪随机数生成函数 rand 所能返回的最大数值 
             double randx = x - r + (double(rand()) / RAND_MAX * r) * 2;
             double randy = y - r + (double(rand()) / RAND_MAX * r) * 2;
             double dis = sqrt((randx - x) * (randx - x) + (randy - y) * (randy - y));
@@ -44,3 +44,5 @@ public:
  * vector<double> param_1 = obj->randPoint();
  */
 
+// randx,randy 为随机之后的点，初始位置是(x-r, y-r)，对应正方形的左下角，
+// 随机值区间是(0, 2r),正方形的采样区间，然后进行距离判断，在圆内则返回，不在则继续随机
