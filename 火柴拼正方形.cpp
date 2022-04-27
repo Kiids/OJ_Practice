@@ -17,17 +17,17 @@
 class Solution {
     bool DFS(int index, vector<int>& matchsticks, int target, vector<int>& bucket)
     {
-        //index为当前遍历到的下标，matchsticks为边长数组，target为目标边长，bucket表示当前每条边的长度
-        if (index >= matchsticks.size()) // 每条边都用了
+        // index当前遍历到的下标，matchsticks边长数组，target目标边长，bucket当前每条边的长度
+        if (index >= matchsticks.size())                  // 每条边都用了
             return (bucket[0] == bucket[1]) && (bucket[1] == target) && (bucket[2] == target);
-        for (int i = 0; i < 4; i++)
-        { // 将当前的边放在4个桶中分别尝试
-            if (bucket[i] + matchsticks[index] > target)
-                continue; // 说明不可以放在这个边上
-            bucket[i] += matchsticks[index]; // 否则放入该边后继续dfs
+        for (int i = 0; i < 4; i++)                       // 将当前的边放在4个桶中分别尝试
+        {
+            if (bucket[i] + matchsticks[index] > target)  // 不可以放在这个边上
+                continue;
+            bucket[i] += matchsticks[index];              // 否则放入该边后继续dfs
             if (DFS(index + 1, matchsticks, target, bucket))
                 return true;
-            bucket[i] -= matchsticks[index]; // 注意回溯的恢复状态
+            bucket[i] -= matchsticks[index];              // 回溯恢复状态
         }
         return false;
     }
@@ -38,9 +38,9 @@ public:
         int sum = accumulate(matchsticks.begin(), matchsticks.end(), 0);
         if (sum % 4)
             return false;
-        sort(matchsticks.begin(), matchsticks.end(), greater<int>()); 
-        // 从大到小排序，优先选用大的边可以令不成功的情况更快返回
-        vector<int> bucket(4); // 定义4个边的值
+        // 从大到小排序，优先选用大的边可以令不成功的情况更快返回 
+        sort(matchsticks.begin(), matchsticks.end(), greater<int>());
+        vector<int> bucket(4);  // 定义4个边的值 
         return DFS(0, matchsticks, sum / 4, bucket);
     }
 };
