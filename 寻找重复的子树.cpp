@@ -29,7 +29,7 @@
  */
 class Solution {
     vector<TreeNode*> v;
-    unordered_map<string,int> m;
+    unordered_map<string, int> m;
     string DFS(TreeNode* root)
     {
         if (!root)
@@ -46,3 +46,6 @@ public:
         return v;
     }
 };
+
+//二叉树序列化存储在哈希表，统计每棵子树对应序列出现的次数
+
