@@ -51,3 +51,6 @@ public:
         return ret;
     }
 };
+
+//dp[i][j] = 0.25*(dp[i+4][j]+dp[i+3][j+1]+dp[i+2][j+2]+dp[i+1][j+3]);
+
