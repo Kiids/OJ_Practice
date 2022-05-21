@@ -27,7 +27,8 @@ public:
         dominoes = "L" + dominoes + "R";
         int l = 0;
         string ret = "";
-        for (int r = 1; r < dominoes.size(); r++) {
+        for (int r = 1; r < dominoes.size(); r++)
+		{
             if (dominoes[r] == '.')
                 continue;
             if (l != 0)
@@ -39,9 +40,22 @@ public:
             else if (dominoes[l] == 'L' && dominoes[r] == 'R')
                 ret += string(mid, '.');
             else
-                ret += string(mid / 2, 'R') + (mid % 2 == 1? "." : "") + string(mid / 2, 'L');
+                ret += string(mid / 2, 'R') + (mid % 2 == 1 ? "." : "") + string(mid / 2, 'L');
             l = r;
         }
         return ret;
     }
 };
+
+//找出每个 . 左右两边最近的两个被推倒了的牌，然后判断这两个牌是什么样子的。
+//双指针寻找 . 左右两边距离最近的被推倒的牌，形成 X....Y 区间。
+//四种可能性：
+//'R......R' => 'RRRRRRRR'
+//'R......L' => 'RRRRLLLL' || 'RRRR.LLLL'
+//'L......R' => 'L......R'
+//'L......L' => 'LLLLLLLL'
+//l指向区间的开始（指向 "L" 或 "R"）；
+//r跳过所有的 "."，指向区间的结束（指向 "L" 或 "R"）。
+//区间为 "X....Y"，判断这个区间左右端点的 "X"、 "Y"是什么，确定中间的 "."的状态。
+// mid 表示区间内 "." 的个数。
+ 
