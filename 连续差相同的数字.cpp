@@ -22,16 +22,16 @@
 
 class Solution {
     vector<int> v;
-    void DFS(int now, int remain, int k)
+    void DFS(int now, int remain, int k)  // now 当前选出的数，remain 剩余的数字 
     {
         if (remain == 0)
         {
             v.push_back(now);
             return ;
         }  
-        if (now % 10 - k >= 0)
+        if (now % 10 - k >= 0)            // 如 now 为 2  k 为 3   没有符合的数  
             DFS(now * 10 + now % 10 - k, remain - 1, k);
-        if (k != 0 && now % 10 + k < 10)
+        if (k != 0 && now % 10 + k < 10)  // k = 0时，now % 10 - k 和 now % 10 + k 一样会重复 
             DFS(now * 10 + now % 10 + k, remain - 1, k);
     }
 public:
