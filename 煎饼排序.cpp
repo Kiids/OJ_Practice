@@ -45,3 +45,21 @@ public:
         return v;
     }
 };
+
+class Solution {
+public:
+    vector<int> pancakeSort(vector<int>& arr) {
+        vector<int> v;
+        for (int i = arr.size() - 1; i > 0; i--)
+        {
+            int max_i = max_element(arr.begin(), arr.begin() + i + 1) - arr.begin();
+            if (max_i == i)
+                continue;
+            reverse(arr.begin(), arr.begin() + max_i + 1);
+            reverse(arr.begin(), arr.begin() + i + 1);
+            v.push_back(max_i + 1);
+            v.push_back(i + 1);
+        }
+        return v;
+    }
+};
