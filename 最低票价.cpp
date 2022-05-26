@@ -52,9 +52,12 @@ public:
                 idx++;
             }
             else
-                dp[i] = dp[ i- 1];
+                dp[i] = dp[i - 1];
         }
 
         return dp[last];
     }
 };
+
+// 从前往后一维dp
+
