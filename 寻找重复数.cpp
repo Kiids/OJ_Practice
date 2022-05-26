@@ -59,4 +59,6 @@ public:
 //起点到环的入口长度m，环周长为c，在fast和slow相遇时slow走了n步。则fast走了2n步，fast比slow多走了n步，
 //这n步全用在了在环里循环（n%c==0）。当fast和last相遇之后，设置第三个指针finder，它
 //从起点开始和slow(在fast和slow相遇处)同步前进，当finder和slow相遇时，就是在环的入口处相遇，也就是重复的那个数字。
+//fast 和 slow 相遇时，slow 在环中行进的距离是n-m，其中 n%c==0。让 slow 前进 m 步——也就是在环中走了 n 步了。
+//而 n%c==0 即 slow 在环里面走的距离是环的周长的整数倍，就回到了环的入口重复数字。
 
