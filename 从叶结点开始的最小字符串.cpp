@@ -35,8 +35,8 @@ class Solution {
     {
         if (root == nullptr)
             return;
-        curr += 'a' + root->val;
-        if (root->left == nullptr && root->right == nullptr)
+        curr += 'a' + root->val;  // 默认加当前结点字符
+        if (root->left == nullptr && root->right == nullptr)  // 叶子，已经找到一个结果，更新结果
         {
             string str = curr;
             reverse(str.begin(), str.end());
@@ -45,7 +45,7 @@ class Solution {
         }
         DFS(root->left, curr);
         DFS(root->right, curr);
-        curr.pop_back();
+        curr.pop_back();  // 回溯
     }
 public:
     string smallestFromLeaf(TreeNode* root) {
