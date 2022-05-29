@@ -20,8 +20,8 @@ public:
         int l = 0, ret = INT_MIN;
         for (int i = 0; i < values.size(); i++)
         {
-            ret = max(ret, l + values[i] - i);
-            l = max(l, values[i] + i);
+            ret = max(ret, l + values[i] - i);  // 更新总评分最大值
+            l = max(l, values[i] + i);          // 更新 values[i] + i的最大值
         }
         return ret;
     }
