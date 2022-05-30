@@ -51,6 +51,50 @@ public:
         return ret;
     }
 };
-
+//自顶向下考虑
 //dp[i][j] = 0.25*(dp[i+4][j]+dp[i+3][j+1]+dp[i+2][j+2]+dp[i+1][j+3]);
+
+class Solution {
+public:
+    double soupServings(int N) {
+        // 较大N，直接返回1.0
+        if (N >= 4000)
+            return 1.0;
+        // 归一化
+        N = N / 25 + (N % 25 != 0);
+        double** d = new double*[N+1];
+        for (int i = 0; i <= N; i++)
+        {
+            d[i] = new double[N + 1];
+            memset(d[i], 0, sizeof(double)*(N + 1));
+        }
+        for (int i = 0; i <= N; i++)
+        {
+             for (int j = 0; j <= N; j++)
+             {
+                 if (i > 0 && j > 0)
+                     d[i][j] = (d[max(i-4, 0)][j] + d[max(i-3, 0)][max(j-1,0)] + d[max(i-2, 0)][max(j-2,0)] + d[max(i-1, 0)][max(j-3,0)])*0.25;
+                 else if (i <= 0 && j <= 0)
+                     d[i][j] = 0.5;
+                 else if (i <= 0 && j > 0)
+                     d[i][j] = 1.0;
+             }
+        }
+        return d[N][N];
+    }
+};
+//dp(i, j) 表示汤 A 和汤 B 剩下 i 和 j 份时，所求的概率值
+//基于都是25的倍数先做一次归一化，变为如下情况
+//4A和0B
+//3A和1B
+//2A和2B
+//1A和3B
+//初始化默认都是0，边缘情况：
+//i <= 0, j <= 0: d[i][j] = 1.0 / 2 = 0.5 （同时分配完）
+//i <= 0, j > 0: d[i][j] = 1.0 ( 汤A先分配完的概率=1.0)
+//i > 0, j <= 0: d[i][j] = 0.0 ( 两种情况都没发生)
+//计算
+//d[i][j]= (d[i-4][j] + d[i-3][j-1] + d[i-2][j-2] + d[i-1][j-3])/4.0 (四种概率之和的四分之一)
+//计算避免负值出现，所以要和0取max,计算从小到大, d[N][N] 初始值是N,N就是结果
+
 
