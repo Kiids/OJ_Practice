@@ -28,16 +28,22 @@ public:
     int twoCitySchedCost(vector<vector<int>>& costs) {
         sort(costs.begin(), costs.end(), [](const vector<int>& a, const vector<int>& b)->bool
         {
-            return a[1]-a[0] < b[1]-b[0];
+            return a[1] - a[0] < b[1] - b[0];
         });
-        int ret = 0, n = costs.size(), n2= n/2;
+        int ret = 0, n = costs.size(), n2 = n / 2;
 
-        for (int i = 0; i < n2; i++)
+        for (int i = 0; i < n2; i++)  // 最小的是去城市1
             ret += costs[i][1];
             
-        for (int i = n2; i < n; i++)
+        for (int i = n2; i < n; i++)  // 更大的去城市0
             ret += costs[i][0];
 
         return ret;
     }
 };
+
+//问题转换
+//全部人都去0城市，然后找出n个人去1城市，那么就是要求得最小的n个 price1-price0 的总和
+//按照 prices1-price0 差值从小到大的排列
+//全部去0城市的费用为 sum0, 然后n个去1的费用和 sum1 那么结果就是 sum0+sum1
+
