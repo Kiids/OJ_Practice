@@ -30,7 +30,7 @@ class Solution {
 public:
     vector<int> gardenNoAdj(int n, vector<vector<int>>& paths) {
         vector<vector<int>> v(n);
-        for (auto& path : paths)
+        for (auto& path : paths)  // 建立邻接表
         {
             v[path[0] - 1].push_back(path[1] - 1);
             v[path[1] - 1].push_back(path[0] - 1);
@@ -40,9 +40,9 @@ public:
         for (int i = 0; i < n; i++)
         {
             int color[5] = {0};
-            for (auto& v : v[i])
+            for (auto& v : v[i])  // 记录相邻边颜色
                 color[ret[v]] = 1;
-            for (int c = 1; c <= 4; c++)
+            for (int c = 1; c <= 4; c++)  // 选择没有选过的颜色
             { 
                 if (color[c] == 0)
                 {
@@ -54,3 +54,6 @@ public:
         return ret;
     }
 };
+
+//所有花园最多3条路径进入或离开, 则每个顶点最多3个相邻顶点
+//建立邻接表, 记录相邻边颜色, 选择一个没用过的颜色进行标记
