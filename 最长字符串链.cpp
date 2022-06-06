@@ -37,7 +37,7 @@ class Solution {
     }
 public:
     int longestStrChain(vector<string>& words) {
-        sort(words.begin(), words.end(), [](const string& a, const string& b){
+        sort(words.begin(), words.end(), [](const string& a, const string& b){  // 按长度排序
             return a.size() < b.size();
         });
 
@@ -56,3 +56,10 @@ public:
         return ret;
     }
 };
+
+//动态规划
+//dp[i]表示以i为结尾的最长的长度
+//初始化，至少自己一个单词，初始化 1
+//从短到长计算, 对于当前单词找序号比它小的 j 情况： 如果相等，则 max(d[i], dp[j] + 1)
+//结果 max(dp[i])
+
