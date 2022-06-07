@@ -33,18 +33,23 @@ public:
     TreeNode* sufficientSubset(TreeNode* root, int limit) {
         if (!root)
             return root;
-        if (!root->left && !root->right)
+        if (!root->left && !root->right)  // 当前节点为叶子节点
         {
-            if (root->val >= limit)
+            if (root->val >= limit)       // 大于limit直接返回
                 return root;
-            else
+            else                          // 小于limit返回空 即删除这个节点
                 return nullptr;
         }
+        // 非叶子节点
+		// 递归左右子节点
         root->left = sufficientSubset(root->left, limit - root->val);
         root->right = sufficientSubset(root->right, limit - root->val);
-        if (!root->left && !root->right)
+        if (!root->left && !root->right)  // 递归后左右子节点为空，则经过它的路径都小于limit，删除这个节点
             return nullptr;
         else
             return root;
     }
 };
+
+// 删除所有路径和小于limit的路径 == 保留所有路径和大于等于limit的路径
+
