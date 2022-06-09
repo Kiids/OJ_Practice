@@ -19,6 +19,8 @@ s 仅由数字组成
 class Solution {
     int n;
     vector<string> v;
+    // u当前搜到字符串的第几个位置
+    // cnt将字符串分割成了满足要求的几部分
     void DFS(string& s, int u, int cnt, string path)
     {
         if (u == n && cnt == 4)
@@ -27,12 +29,12 @@ class Solution {
             v.push_back(path);
             return;
         }
-        if (u == n || cnt > 4)
+        if (u == n || cnt > 4)  // 剪枝
             return;
         for (int i = u; i < n; i ++ )
         {
             string str = s.substr(u, i - u + 1);
-            if ((str[0] == '0' && str.size() > 1) || str.size() > 3)
+            if ((str[0] == '0' && str.size() > 1) || str.size() > 3)  // 如果有前导0，或者分割的数字大于3位，直接返回
                 return;
             int x = stoi(str);
             if (x >= 0  && x <= 255)
@@ -46,3 +48,6 @@ public:
         return v;
     }
 };
+
+//从当前位置往后分割字符串，分割到合法的子串后，向下一个位置搜，搜素过程中剪枝。
+
