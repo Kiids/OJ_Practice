@@ -35,15 +35,15 @@ public:
         ss << path;
         string readcache;
         vector<string> filename;
-        while (getline(ss,readcache,'/') )
+        while (getline(ss, readcache, '/'))
         {
-            if (readcache == "" )
+            if (readcache == "")
                 continue;
-            else if (readcache == "." )
+            else if (readcache == ".")
                 continue;
-            else if (readcache == ".." )
+            else if (readcache == "..")
             {
-                if (filename.size() > 0 )
+                if (filename.size() > 0)
                     filename.pop_back();
             }
             else
@@ -58,3 +58,8 @@ public:
         return s;
     }
 };
+
+//istream& getline (char* s, streamsize n );
+//istream& getline (char* s, streamsize n, char delim );
+//从istream中读取至多n个字符(包含结束标记符)保存在s对应的数组中。即使还没读够n个字符，
+//如果遇到delim 或 字数达到限制，则读取终止，delim都不会被保存进s对应的数组中。
