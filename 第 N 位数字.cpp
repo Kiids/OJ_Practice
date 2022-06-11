@@ -37,3 +37,21 @@ public:
         return target[mod] - '0';
     }
 };
+
+
+class Solution {
+public:
+    int findNthDigit(long n) {
+        int k = 1;
+        while (k * pow(10, k) < n){
+            n += pow(10, k);
+            k += 1;
+        }
+        return to_string(n / k)[n % k] - '0';
+    }
+};
+
+//通过补0每个数字字符宽度都补成当前位数k, 那么返回第n/k个数 的 第 n%k 位即可, 前面补0后n要右移对应的长度
+//k为3时，数字序列为 000 001 002 003 004 005 006 007 008 009 010 011...
+
+
