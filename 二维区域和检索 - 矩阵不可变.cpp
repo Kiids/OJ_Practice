@@ -26,7 +26,7 @@ n == matrix[i].length
 */
 
 class NumMatrix {
-    vector<vector<int>> preSum;
+    vector<vector<int>> preSum;  // Ç°×ººÍ¾ØÕó
 public:
     NumMatrix(vector<vector<int>>& matrix) {
         int n = matrix.size(), m = matrix[0].size();
