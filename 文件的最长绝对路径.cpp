@@ -40,18 +40,18 @@ input 可能包含小写或大写的英文字母，一个换行符 '\n'，一个制表符 '\t'，一个点 '.'
 class Solution {
 public:
     int lengthLongestPath(string input) {
-        input += '\n';
-        vector<int> file(1, 0);
+        input += '\n';           // 设置哨兵
+        vector<int> file(1, 0);  // 设置哨兵 避免出现空栈情况 栈的元素表示当前绝对路径长度(不含 '/')
         auto p1 = input.begin(), p2 = find(p1, input.end(), '\n');
         int ret = 0, depth = 0;
         while (p1 != input.end())
         {
-            depth = count(p1, p2, '\t');
-            file.resize(depth + 1);
-            file.push_back( file.at(depth) + p2 - p1 - depth);
-            if (find(p1 + depth, p2, '.') != p2)
-                ret = max(ret, file.back() + depth);
-            p1 = p2 + 1;
+            depth = count(p1, p2, '\t');  // 当前文件夹层级 有多少制表符就是多少层
+            file.resize(depth + 1);       // 释放不需要的层级 因为前面有一个哨兵所以保留层数+1
+            file.push_back(file.at(depth) + p2 - p1 - depth);  //路径长度
+            if (find(p1 + depth, p2, '.') != p2)      // 通过有无.判断是否是一个文件
+                ret = max(ret, file.back() + depth);  // 加上 '/'的数量
+            p1 = p2 + 1;  // 向后搜索
             p2 = find(p1, input.end(), '\n');
         }
         return ret;
