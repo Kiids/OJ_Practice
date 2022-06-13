@@ -16,10 +16,10 @@ class Solution {
 public:
     string originalDigits(string s) {
         string ret;
-        vector<int> num(10, 0);//通过0-9的英文单词的特征字母来求阿拉伯数字的个数
-        vector<int> alpha(26, 0);//字母表 统计每个字母出现的次数
+        vector<int> num(10, 0);             //通过0-9的英文单词的特征字母来求阿拉伯数字的个数
+        vector<int> alpha(26, 0);           //字母表 统计每个字母出现的次数
         for (int i = 0; i < s.size(); i++)
-            alpha[s[i] - 'a']++;//统计每个字母的数字
+            alpha[s[i] - 'a']++;            // 统计每个字母的数字
         num[0] = alpha['z' - 'a'];
         num[2] = alpha['w' - 'a'];
         num[4] = alpha['u' - 'a'];
@@ -40,3 +40,11 @@ public:
         return ret;
     }
 };
+
+//一个特征对应一个单词：
+//zero——z
+//two——w
+//four——u
+//six——x
+//eight——g
+
