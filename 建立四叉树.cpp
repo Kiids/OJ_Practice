@@ -89,12 +89,13 @@ public:
 */
 
 class Solution {
-    bool CheckLeaf(int top, int left, int bottom, int right, vector<vector<int>>& grid)
+    bool CheckLeaf(int top, int left, int bottom, int right, vector<vector<int>>& grid)  // 传入左上 右下 坐标，验证方块内是否一致
     {
         int same = grid[top][left];
         for (int i = top; i <= bottom; i++)
             for (int j = left; j <= right; j++)
-                if (grid[i][j] != same) return false;
+                if (grid[i][j] != same)
+					return false;
         return true;
     }
     Node* Fun(int top, int left, int bottom, int right, vector<vector<int>>& grid)
