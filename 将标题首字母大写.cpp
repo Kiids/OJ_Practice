@@ -29,6 +29,29 @@ title 由单个空格隔开的单词组成，且不含有任何前导或后缀空格。
 class Solution {
 public:
     string capitalizeTitle(string title) {
+        for (int i = 0, j = 0; j < title.size(); j++)
+		{
+            if (title[j] == ' ' || j == title.size() - 1)
+			{
+                if (j == title.size() - 1)
+					j++;
+                if (j - i > 2)
+				{
+                    title[i] = toupper(title[i]);
+                    i++;
+                }
+                for (int k = i; k < j; k++)
+					title[k] = tolower(title[k]);
+                i = j + 1;
+            }
+        }
+        return title;
+    }
+};
+
+class Solution {
+public:
+    string capitalizeTitle(string title) {
         int i = 0;
         while (i < title.size())
         {
