@@ -32,14 +32,14 @@ class Solution {
 public:
     vector<int> findEvenNumbers(vector<int>& digits) {
         int nums[10] = {0};
-        for (auto& e : digits)
+        for (auto& e : digits)  // 统计原有的每一个数字[0-9]的计数
             nums[e]++;
             
         vector<int> v;
         for (int i = 100; i <= 998; i += 2)
         {
             int x = i;
-            int cnt[10] = {0};
+            int cnt[10] = {0};  // 统计目前判断的偶数的每一位数字[0-9]的计数
             bool flag = true;
             while (x)
             {
