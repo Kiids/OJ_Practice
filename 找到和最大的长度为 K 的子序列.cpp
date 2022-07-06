@@ -45,3 +45,9 @@ public:
         return v;
     }
 };
+
+//std::priority_queue:优先队列，类似堆(heap)
+//priority_queue<Type, Container, Functional>, Type数据类型，Container保存数据的容器，Functional元素比较方式。
+//Container必须是用数组实现的容器，比如 vector, deque. STL里面默认用的是vector. 比较方式默认用operator< , 
+//如果把后面两个参数缺省的话，优先队列就是大顶堆，队头元素最大。
+
