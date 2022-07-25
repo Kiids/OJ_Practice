@@ -34,7 +34,7 @@
 class Solution {
 public:
     int findMiddleIndex(vector<int>& nums) {
-        vector<int> sum{0};
+        vector<int> sum{0};  // Ç°×ººÍ 
         for (auto& e : nums) 
             sum.push_back(sum.back() + e);
         for (int i = 1; i < sum.size(); i++)
