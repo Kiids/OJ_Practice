@@ -41,3 +41,14 @@ public:
         return ret;
     }
 };
+
+class Solution {
+public:
+    int getMinimumTime(vector<int>& time, vector<vector<int>>& fruits, int limit) {
+        int ret = 0;
+        for (auto& f : fruits)
+			ret += time[f[0]] * (f[1] / limit + bool(f[1] % limit));
+        return ret;
+    }
+};
+
