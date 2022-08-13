@@ -51,3 +51,27 @@ public:
         return n;
     }
 };
+
+class Solution {
+public:
+    int canBeTypedWords(string text, string brokenLetters) {
+        bool v[26] = {0};
+        for (auto e : brokenLetters)
+            v[e - 'a'] = true;
+            
+        bool flag = true;
+        int n = 0;
+        for (int i = 0; i <= text.size(); i++)
+        {
+            if (text[i] == ' ' || text[i] == '\0')
+            {
+                if (flag)
+                    n++;
+                flag = true;
+            }
+            else if (v[text[i] - 'a'])
+                flag = false;
+        }
+        return n;
+    }
+};
