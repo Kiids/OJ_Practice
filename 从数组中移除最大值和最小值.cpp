@@ -53,6 +53,6 @@ public:
         int n = nums.size();
         int left = min(max_index, min_index);
         int right = max(max_index, min_index);
-        return min(min(n - left, right + 1), n - right + left + 1);
+        return min(min(n - left, right + 1), n - right + left + 1);  // 三种情况，全左边删，全右边删，左边+右边删
     }
 };
