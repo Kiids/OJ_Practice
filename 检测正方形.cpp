@@ -64,3 +64,5 @@ public:
  * obj->add(point);
  * int param_2 = obj->count(point);
  */
+ 
+ // 找到数据流中一个横轴和目标点相同的顶点，确定一个边长；再判断剩下两个顶点在数据集中是否存在并计数
