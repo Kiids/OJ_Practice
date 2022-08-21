@@ -42,3 +42,28 @@ public:
         return ret;
     }
 };
+
+
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        int cnt[3];
+        cnt[0] = -1;
+        cnt[1] = -1;
+        cnt[2] = -1;
+
+        int ret = 0;
+        for (int i = 0; i < s.size(); i++)
+        {
+            cnt[s[i] - 'a'] = i;
+            // 这里求全部最小值即可，不需要判断是a或b或c的情况
+            ret += min(cnt[0], min(cnt[1], cnt[2])) + 1;
+        }
+        return ret;
+    }
+};
+
+//对于当前出现a，那么去看b,c的上次出现位置的最小值 x
+//那么0~i, 1~i到x~i 之间一共 x+1的字符串都是新引入的（因为i是新的）
+//单次遍历，累加x+1结果即可，计算后会更新a的最新位置
+
