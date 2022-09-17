@@ -20,6 +20,7 @@
 
 class Solution {
     int ret = 0;
+    unordered_set<string> us;
     void DFS(string& s, int pos)
     {
         if (s.size() - pos + us.size() <= ret)
@@ -31,7 +32,8 @@ class Solution {
         }
 
         string t;
-        for (int i = pos; i < s.size(); i++) {
+        for (int i = pos; i < s.size(); i++)
+		{
             t += s[i];
             if (us.find(t) == us.end())
             {
@@ -41,7 +43,6 @@ class Solution {
             }
         }
     }
-    unordered_set<string> us;
 public:
     int maxUniqueSplit(string s) {
         DFS(s, 0);
