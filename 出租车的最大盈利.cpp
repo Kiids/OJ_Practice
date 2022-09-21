@@ -43,3 +43,10 @@ public:
         return dp[n];
     }
 };
+
+//如果有在地点 i 下车的乘客 j，则出租车可以选择搭载该乘客，有
+//dp[i] → dp[start_j] + (end_j - start_j + tip_j)
+//此外，出租车可以选择不在该地点搭载乘客，有
+//dp[i] → dp[i-1]
+//统计 v 数组，v[i] 记录从 i 下车的乘客列表，每个乘客用 (start, price)表示，start乘客的上车时间，price搭载乘客的车费收入。
+
