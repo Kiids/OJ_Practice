@@ -27,18 +27,18 @@
 class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
-        int count = 0;
+        int count = 0;                              // 计数 下标
         vector<int> v;
-        stack<pair<int, int>> s;
+        stack<pair<int, int>> s;                    // first -> val，second -> 下标
         while (head)
         {
-            v.push_back(0);
+            v.push_back(0);                         // 数组+0，保证长度&后无更大的值时为0
             while (!s.empty() && head->val > s.top().first)
             {
                 v[s.top().second] = head->val;
                 s.pop();
             }
-            s.push(make_pair(head->val, count++));
+            s.push(make_pair(head->val, count++));  // count++计数
             head = head->next;
         }
         return v;
