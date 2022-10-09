@@ -42,13 +42,13 @@ public:
                 strs.push(ret); 
                 ret = "";
             }
-            else  // 遇到‘]’时，操作与之相配的‘[’之间的字符，使用分配律
+            else  // 遇到‘]’时，操作与之相配的‘[’之间的字符
             {
                 int times = nums.top();
                 nums.pop();
                 for (int j = 0; j < times; j++)
                     strs.top() += ret;
-                ret = strs.top();  // 之后若还是字母，直接加到res之后，同级运算，若是左括号，ret压入strs栈，作为上一层的运算
+                ret = strs.top();  // 之后若还是字母，直接加到ret之后，同级运算，若是左括号，ret压入strs栈，作为上一层的运算
                 strs.pop();
             }
         }
