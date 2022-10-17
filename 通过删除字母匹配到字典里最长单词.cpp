@@ -36,3 +36,12 @@ public:
         return ret;
     }
 };
+
+
+//双指针遍历，从左到右的顺序遍历s，判断d[j]是否等于s[i];
+//若d[j]==s[i],i++,j++
+//若d[j]!=s[i],i++
+//当d全部遍历完，判断是否将d存入ret;
+//当d.size()>ret.size(),ret=d;
+//当d.size()==ret.size(),ret=d<ret?d:ret;
+
