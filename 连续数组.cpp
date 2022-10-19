@@ -19,19 +19,19 @@ public:
         int maxLength = 0;
         unordered_map<int, int> mp;
         int counter = 0;
-        mp[counter] = -1;
+        mp[counter] = -1;                                   // 前置值，用于下标从0开始的子数组。
         int n = nums.size();
         for (int i = 0; i < n; i++)
         {
             int num = nums[i];
             if (num == 1)
                 counter++;
-            else
+            else                                            // 把0当作-1处理，这样和为0就是1与0数目相同
                 counter--;
-            if (mp.count(counter))
+            if (mp.count(counter))                          // 如果值已经存在了，保存最靠前的值，从而获得最大长度
             {
                 int prevIndex = mp[counter];
-                maxLength = max(maxLength, i - prevIndex);
+                maxLength = max(maxLength, i - prevIndex);  // 更新
             }
             else
                 mp[counter] = i;
@@ -39,3 +39,4 @@ public:
         return maxLength;
     }
 };
+// 前缀和哈希表
