@@ -22,15 +22,15 @@ myCalendar.book(20, 30); // return True ，这个日程安排可以添加到日历中，因为第一
 */
 
 class MyCalendar {
-    map<int, int> m;
+    map<int, int> m;                   // m[start] = end;
 public:
     MyCalendar() {
-        m[-1] = -1;
+        m[-1] = -1;                    // 避免 --it 越界
     }
     
     bool book(int start, int end) {
-        auto it = m.lower_bound(end);
-        if ((--it)->second <= start)
+        auto it = m.lower_bound(end);  // end 之后的第一个日程, start[idx] >= end 的第一个迭代器 
+        if ((--it)->second <= start)   // 检查前一个日程与当前日程是否重叠,  当end[idx - 1] <= start 时不重叠 
         {  
             m[start] = end;
             return true;
@@ -44,3 +44,7 @@ public:
  * MyCalendar* obj = new MyCalendar();
  * bool param_1 = obj->book(start,end);
  */
+ 
+// lower_bound()返回一个 iterator 它指向在[first,last)标记的有序序列中可以插入value，
+// 而不会破坏容器顺序的第一个位置，而这个位置标记了一个不小于value 的值。该函数为C++ STL内的函数。
+// 调用lower_bound之前必须确定序列为有序序列
