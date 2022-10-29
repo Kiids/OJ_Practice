@@ -82,3 +82,10 @@ public:
         return v;
     }
 };
+
+//将原始vector组合到一个string上操作。情况：
+//当前为/*，找到下一个*/后continue
+//当前为//，i++至换行符\n，将buffer加入v，清空buffer
+//当前为\n，若buffer不为空，写入v后清空buffer
+//其他，当前字符写入buffer，继续循环
+
