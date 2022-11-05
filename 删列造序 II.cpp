@@ -30,7 +30,7 @@ strs[i] 由小写英文字母组成
 */
 
 class Solution {
-    bool IsSorted(vector<string>& s)
+    bool IsSorted(vector<string>& s)  // 字典序
     {
         for (int i = 0; i < s.size() - 1; i++)
             if (s[i] > s[i + 1])
@@ -39,15 +39,15 @@ class Solution {
     }
 public:
     int minDeletionSize(vector<string>& strs) {
-        vector<string> v(strs.size(), "");
+        vector<string> v(strs.size(), "");              // 维护当前字符串数组，不满足则忽略，满足则增加字符长度
         for (int i = 0; i < strs[0].size(); i++)
         {
             for (int j = 0; j < strs.size(); j++)
                 v[j] += strs[j][i];
-            if (!IsSorted(v))
-                for (int j = 0; j <  strs.size(); j++)
+            if (!IsSorted(v))                           // 判断当前字符串是否满足，满足则更新v
+                for (int j = 0; j < strs.size(); j++)   // 不满足，弹出该字符
                     v[j].pop_back();
         }
-        return strs[0].size() - v[0].size();
+        return strs[0].size() - v[0].size();            // 差值就是被移除字符串长度
     }
 };
