@@ -55,3 +55,37 @@ public:
 //相当于在三颗二叉树中，通过计算结点个数求解。
 //需要注意相邻的两个字符不相同，所以这里使用定义状态的方法
 
+
+class Solution {
+    vector<string> v;
+    void DFS(int n, int cur, string t)
+    {
+		if (cur == n)
+        {
+			v.push_back(t);
+			return;
+		}			
+		if (check(t, 'a'))DFS(n, cur + 1, t + 'a');
+		if (check(t, 'b'))DFS(n, cur + 1, t + 'b');
+		if (check(t, 'c'))DFS(n, cur + 1, t + 'c');
+	}
+	bool check(string &t, char a)
+    {
+		if (t.empty())
+            return true;
+		return t[t.size() - 1] != a;
+	}
+public:
+    string getHappyString(int n, int k) {
+		DFS(n, 0, "");
+		if (v.size() < k)
+            return "";
+		else return v[k - 1];
+    }
+};
+
+//回溯
+//判断要添加的字符与当前字符串的关系，若当前字符串为空或当前字符串最后一个字符与要添加字符不同，则可添加字符，否则不能添加字符，
+//因为递归顺序是a,b,c依次添加的，所以添加的字符串的排序是按字典序从小到大依次排序的，最后判断数组的大小是否大于k，
+//若大于，则返回数组中第k个字符串，否则返回空字符串。
+
