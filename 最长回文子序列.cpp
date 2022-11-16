@@ -18,9 +18,9 @@ class Solution {
 public:
     int longestPalindromeSubseq(string s) {
         const int n = s.size();
-        int dp[n][n];   //dp[i][j]记录j-i区间内的最长回文长度
+        int dp[n][n];                // dp[i][j] -> j - i 区间内的最长回文长度
         memset(dp, 0, sizeof(dp));
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)  // 初始化 一个字母本身为长度 1 的回文串 
             dp[i][i] = 1;
         for (int i = 1; i < n; i++)
             for (int j = i - 1; j >= 0; j--)
