@@ -25,7 +25,7 @@ public:
         int n = s.size(), m = p.size();
         if (m > n)
             return {};
-        vector<int> v, ns(26), np(26);
+        vector<int> v, ns(26), np(26);  // 哈希记录各种字母个数 
         int i;
         for (i = 0; i < m; i++)
         {
@@ -34,7 +34,7 @@ public:
         }
         if (np == ns)
             v.push_back(0);
-        for (; i < n; i++)
+        for (; i < n; i++)              // 遍历比较 
         {
             ns[s[i] - 'a']++;
             ns[s[i - m] - 'a']--;
