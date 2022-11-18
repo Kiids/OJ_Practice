@@ -26,7 +26,7 @@ public:
             char c = expression[i];
             if (c == '+' || c == '-' || c == '*')
             {
-                vector<int> left = diffWaysToCompute(expression.substr(0, i));
+                vector<int> left = diffWaysToCompute(expression.substr(0, i));  // µÝ¹é 
                 vector<int> right = diffWaysToCompute(expression.substr(i + 1));
                 for (int& l : left)
                 {
@@ -48,7 +48,7 @@ public:
                 }
             }
         }
-        if (v.size() == 0)
+        if (v.size() == 0)  // ½á¹û 
             v.push_back(stoi(expression));
         return v;
     }
