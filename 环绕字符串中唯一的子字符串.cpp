@@ -43,3 +43,36 @@ public:
 
 // 记录以每个字符结尾字串的最长长度
 // 然后最终累加
+
+
+class Solution {
+public:
+    int findSubstringInWraproundString(string p) {
+        vector<int> dp(26,0);
+        int count = 0;
+        for (int i = 0; i < p.size(); i++)
+        {
+            if (i > 0 && ((p[i - 1] + 1) % 26 == p[i] % 26))
+                count++;
+            else
+                count = 1;
+            dp[p[i] - 'a'] = max(dp[p[i] - 'a'], count);
+        }
+        return accumulate(dp.begin(), dp.end(), 0);
+    }
+};
+
+//动态规划 
+//dp[i]：以字符串p[i]结尾的连续字符串的非空子串长度增量.
+//p[i]-'a'得到对应dp数组下标
+//当 p[i-1] == p[i],count++，与上一个字符构成连续 时： 此情况下最长字符串长度为 dp[p[i]-'a'] = max(dp[p[i]-'a'],count);
+//当 p[i-1]!=p[i],count = 1,与上一个字符不连续 时： 此情况下最长字符串长度为 dp[p[i]-'a'] = max(dp[p[i]-'a'],count);。
+//转移方程
+//dp[p[i]-'a'] = max(dp[p[i]-'a'],count) 。
+//初始状态
+//i = 0 时 dp[p[i]-'a'] = 1。
+//dp[i] 依赖 dp[i-1]，从前向后遍历。
+//dp数组求和即结果。
+//时间复杂度：O(n)，其中 n 是字符串 p 的长度。
+//空间复杂度：O(1)。
+
