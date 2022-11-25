@@ -26,11 +26,12 @@ public:
             int i = 0;
             for (i = 0; i < s.length(); i++)
             {
-                if (a.find(s[i]) == a.end() && b.find(pattern[i]) == b.end())
+                if (a.find(s[i]) == a.end() && b.find(pattern[i]) == b.end())  // 两个map中都没有记录
                 {
                     a[s[i]] = pattern[i];
                     b[pattern[i]] = s[i];
                 }
+                // 两个map中对应记录相同
                 else if (a.find(s[i]) != a.end() && a[s[i]] == pattern[i] && b.find(pattern[i]) != b.end() && b[pattern[i]] == s[i])
                     continue;
                 else
