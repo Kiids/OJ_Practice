@@ -23,8 +23,8 @@ public:
     int maxProfit(vector<int>& prices, int fee) {
         int n = prices.size();
         vector<int> v(2);
-        v[0] = 0;
-        v[1] = -prices[0];
+        v[0] = 0;           // 第i天持有的最多现金
+        v[1] = -prices[0];  // 持股票，第i天持有股票后的最多现金
         for (int i = 2; i <= n; i++)
         {
             v[0] = max(v[0], v[1] + prices[i - 1] - fee);
@@ -33,3 +33,5 @@ public:
         return v[0];
     }
 };
+
+
