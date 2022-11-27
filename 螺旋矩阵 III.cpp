@@ -21,11 +21,11 @@
 class Solution {
 public:
     vector<vector<int>> spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
-        int v[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}, t = 2,  pos = 0, n = 0;
+        int v[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}, t = 2,  pos = 0, n = 0;  // 右下左上 
         vector<vector<int>> ret;
         while (n < rows * cols)
         {
-            for (int i = 0; i < t / 2; i++)
+            for (int i = 0; i < t / 2; i++)  // t遍历步长，每转两下增加一步
             {
                 if (rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols)
                 {
