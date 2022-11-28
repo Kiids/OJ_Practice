@@ -27,7 +27,7 @@ Dota2 ²ÎÒéÔºÓÉÀ´×ÔÁ½ÅÉµÄ²ÎÒéÔ±×é³É¡£ÏÖÔÚ²ÎÒéÔºÏ£Íû¶ÔÒ»¸ö Dota2 ÓÎÏ·ÀïµÄ¸Ä±ä×÷³ö¾
 class Solution {
 public:
     string predictPartyVictory(string senate) {
-        bool R = true, D = true;
+        bool R = true, D = true;  // Ä£ÄâÁ½¸öÕóÓª 
         int flag = 0;
         while (R && D)
         {
