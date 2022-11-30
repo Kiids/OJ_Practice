@@ -18,15 +18,15 @@ public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int, int> hashmap;
         vector<int> v;
-        for (int e : nums)
+        for (int e : nums)  // 元素出现频率
             hashmap[e]++;
 
-        int maxtimes = 0;
+        int maxtimes = 0;   // 最高频率次数
         for (auto e : hashmap)
             if (e.second > maxtimes)
                 maxtimes = e.second;
             
-        while (k > 0)
+        while (k > 0)       // 从最高往低 依次输出
         {
             for (auto e : hashmap)
             {
