@@ -42,3 +42,6 @@ public:
 			swap(nums[i], nums[k]);
     }
 };
+
+// »ØËİÃ¶¾Ù
+
