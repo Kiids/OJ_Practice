@@ -18,7 +18,7 @@ class Solution {
 public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<vector<int>> v;
-        while (true)
+        while(true)
         {
         	v.push_back(nums);
         	fun(nums);
@@ -31,17 +31,19 @@ public:
     void fun(vector<int>& nums)
     {
 		int i = nums.size() - 2, k;
-        while (i >= 0 && nums[i] >= nums[i + 1])
+        while(i >= 0 && nums[i] >= nums[i + 1])
             i--;
-		for (k = i + 1; k <= (nums.size() + i) / 2; k++)
+		for(k = i + 1; k <= (nums.size() + i) / 2; k++)
         	swap(nums[k], nums[nums.size() - (k - i)]);
         k = i + 1;
-        while (i >= 0 && k < nums.size() && nums[k] <= nums[i])
+        while(i >= 0 && k < nums.size() && nums[k] <= nums[i])
             k++;
-		if (i >= 0 && k < nums.size())
+		if(i >= 0 && k < nums.size())
 			swap(nums[i], nums[k]);
     }
 };
 
-// 回溯枚举
+//每次按字典顺序构造当前解的下一个排列，当下一个排列与第一个相等时退出。
+//时间：O(n*n!);
+//空间：O(n!);
 
