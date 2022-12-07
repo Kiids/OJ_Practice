@@ -28,7 +28,7 @@ public:
         return v;	
     }
 
-    void fun(vector<int>& nums)
+    void fun(vector<int>& nums)  // Ë³Ðò²éÕÒ
     {
 		int i = nums.size() - 2, k;
         while(i >= 0 && nums[i] >= nums[i + 1])
