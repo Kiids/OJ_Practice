@@ -47,3 +47,34 @@ public:
 //时间：O(n*n!);
 //空间：O(n!);
 
+
+class Solution {
+    void backtrace(vector<int>& a, vector<vector<int>>& v, int level)
+    {
+        if (level == a.size())
+        {
+            v.push_back(a);
+            return;
+        }
+        
+        unordered_set<int> uniq;  
+        for (int i = level; i < a.size(); i++)
+        {
+            if (uniq.count(a[i]))  // 枚举的时候去重
+                continue;
+            swap(a[i], a[level]);
+            backtrace(a, v, level + 1);
+            swap(a[i], a[level]);
+            uniq.insert(a[i]);
+        }
+    }
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> v;
+        backtrace(nums, v, 0);
+        return v;
+    }
+};
+
+// 回溯枚举时简单去重
+
