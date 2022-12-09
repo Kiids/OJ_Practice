@@ -60,12 +60,12 @@ class Solution {
         unordered_set<int> uniq;  
         for (int i = level; i < a.size(); i++)
         {
-            if (uniq.count(a[i]))  // 枚举的时候去重
+            if (uniq.count(a[i]))        // 枚举的时候去重
                 continue;
             swap(a[i], a[level]);
-            backtrace(a, v, level + 1);
+            backtrace(a, v, level + 1);  // 回溯
             swap(a[i], a[level]);
-            uniq.insert(a[i]);
+            uniq.insert(a[i]);           // 用于去重
         }
     }
 public:
