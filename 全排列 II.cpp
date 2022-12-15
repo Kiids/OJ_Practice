@@ -22,13 +22,13 @@ public:
         {
         	v.push_back(nums);
         	fun(nums);
-            if (nums == v[0])
+            if (nums == v[0])    // 退出时 nums 和最初一样 
             	break;
         }
         return v;	
     }
 
-    void fun(vector<int>& nums)  // 顺序查找
+    void fun(vector<int>& nums)  // 顺序查找，直接更改原数组 
     {
 		int i = nums.size() - 2, k;
         while(i >= 0 && nums[i] >= nums[i + 1])
