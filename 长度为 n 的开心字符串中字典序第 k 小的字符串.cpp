@@ -34,7 +34,7 @@ public:
         char abc[3] = {'a', 'b', 'c'};
         char ch[3][2] = {{'b', 'c'}, {'a', 'c'}, {'a', 'b'}};
         int state[3][2] = {{1, 2}, {0, 2}, {0, 1}};  // 相邻两个字符不相同，取 bc, ac, ab 
-        if (k > (int)pow(2, n - 1) * 3)
+        if (k > (int)pow(2, n - 1) * 3)  // 全排列个数 
             return "";
         string s;
         k--;
