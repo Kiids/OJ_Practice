@@ -27,7 +27,7 @@ public:
     string getPermutation(int n, int k) {
         vector<int> v(n);
         v[0] = 1;
-        for(int i = 1; i < n; i++)  // i!
+        for(int i = 1; i < n; i++)               // i!
             v[i] = i * v[i - 1];
             
         k--;
@@ -37,11 +37,11 @@ public:
             nums.push_back(i);
         for (int i = 1; i <= n; i++)
         {
-            int order = k / v[n - i];
-            s.push_back(nums[order] + '0');
-            for (int j = order; j < n - i; j++)
+            int order = k / v[n - i];            // 获取第一个数字 
+            s.push_back(nums[order] + '0');      // 加入第一个数字 
+            for (int j = order; j < n - i; j++)  // 从 nums 中删除加入的这个数字 
                 nums[j] = nums[j + 1];
-            k %= v[n - i];
+            k %= v[n - i];                       // 下一轮的第几个 
         }
         return s;
     }
