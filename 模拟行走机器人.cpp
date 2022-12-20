@@ -40,7 +40,7 @@ commands[i] is one of the values in the list [-2,-1,1,2,3,4,5,6,7,8,9].
 
 class Solution {
 public:
-    vector<pair<int, int>> v = {{0,1}, {-1,0}, {0,-1}, {1,0}};
+    vector<pair<int, int>> v = {{0,1}, {-1,0}, {0,-1}, {1,0}};  // 四个方向 
     int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
         int direction = 0, x = 0, y = 0, ret = 0;
         set<pair<int, int>> obset;
