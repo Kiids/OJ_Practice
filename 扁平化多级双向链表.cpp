@@ -63,7 +63,7 @@ public:
         return dummy->next;
     }
 
-    Node* DFS(Node* prev, Node* next)
+    Node* DFS(Node* prev, Node* next)  // ตÝน้ 
     {
         if (next == nullptr)
             return prev;
