@@ -77,3 +77,42 @@ public:
         return DFS(tail, tempNext);
     }
 };
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* prev;
+    Node* next;
+    Node* child;
+};
+*/
+
+class Solution {
+    Node* pre = nullptr;
+public:
+    Node* flatten(Node* head) {
+        if(head == nullptr)
+        {
+            return nullptr;
+        }
+        Node* child = head->child;
+        Node* next = head->next;
+
+        head->child = nullptr;
+        head->child = nullptr;
+
+        if(pre != nullptr)
+        {
+            pre->next = head;
+            head->prev = pre;
+        }
+        pre = head;
+
+        flatten(child);
+        flatten(next);
+        return head;
+    }
+};
+// 展开为一颗二叉树，child节点为 左节点， next节点为右节点
