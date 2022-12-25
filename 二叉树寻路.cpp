@@ -17,8 +17,8 @@ class Solution {
 public:
     vector<int> pathInZigZagTree(int label) {
         int deep = log2(label), n = deep + 1;
-        vector<int> v(n,1);
-        while (label != 1)
+        vector<int> v(n, 1);
+        while(label != 1)
         {
             v[--n] = label;
             int up = deep % 2 ? ceil((pow(2, deep + 1) - label) / 2) : pow(2, deep - 1) + 1 - ceil((pow(2, deep + 1) - label) / 2);
@@ -29,3 +29,8 @@ public:
 };
 
 // double ceil(double x); 返回大于或者等于指定表达式的最小整数 
+// res尾部添加label
+// 判断label所在行
+// 找到label父亲节点所在位置（左->右）
+// 更新label为父亲节点数值
+
