@@ -34,3 +34,31 @@ public:
 // 找到label父亲节点所在位置（左->右）
 // 更新label为父亲节点数值
 
+class Solution {
+public:
+    vector<int> pathInZigZagTree(int label) {
+        stack<int> s;
+        vector<int> v;
+        while(label > 1)
+        {
+            s.push(label);
+            label /= 2;
+            if(label == 1)
+                break;
+                
+            int h = log2(label) + 1;
+            int mid = (pow(2, h - 1) + pow(2, h) - 1) / 2;
+            if(label <= mid)
+                label = mid + (mid - label) + 1;
+            else
+                label = mid - (label - mid) + 1;
+        }
+        s.push(1);
+        while (!s.empty())
+        {
+            v.push_back(s.top());
+            s.pop();
+        }
+        return v;
+    }
+};
