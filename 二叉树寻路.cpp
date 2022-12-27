@@ -42,13 +42,13 @@ public:
         while(label > 1)
         {
             s.push(label);
-            label /= 2;
+            label /= 2;                                     // 求label在标准完全二叉树的父结点
             if(label == 1)
                 break;
                 
-            int h = log2(label) + 1;
-            int mid = (pow(2, h - 1) + pow(2, h) - 1) / 2;
-            if(label <= mid)
+            int h = log2(label) + 1;                        // 求label所在的树高的高度h
+            int mid = (pow(2, h - 1) + pow(2, h) - 1) / 2;  // 第h层的中间结点
+            if(label <= mid)                                // 求label在之字形二叉树的父结点
                 label = mid + (mid - label) + 1;
             else
                 label = mid - (label - mid) + 1;
