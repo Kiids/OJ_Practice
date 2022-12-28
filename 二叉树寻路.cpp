@@ -34,6 +34,7 @@ public:
 // 找到label父亲节点所在位置（左->右）
 // 更新label为父亲节点数值
 
+
 class Solution {
 public:
     vector<int> pathInZigZagTree(int label) {
@@ -62,3 +63,13 @@ public:
         return v;
     }
 };
+
+// h层的满二叉树的结点数为2^h-1
+// 那么满二叉树第k层的结点标记为2^(k-1)+2^k-1
+// 结点标记为label的父结点为label/2；
+// 故之字形树的父结点求解为
+// if (label <= mid)
+//    label = mid + (mid - label) + 1;
+// else
+//     label = mid - (label - mid) + 1;
+
