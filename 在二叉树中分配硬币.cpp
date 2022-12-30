@@ -46,7 +46,13 @@ public:
             return 0;
         int left = DFS(root->left, ret);
         int right = DFS(root->right, ret);
-        ret += abs(left) + abs(right);
+        ret += abs(left) + abs(right);  // 移动次数就是过载量的绝对值之和
         return root->val + left + right - 1;
     }
 };
+
+//递归
+//计算需要移动的量就是 abs(val-1)
+//定义DFS(TreeNode*) 表示这个节点的过载量，即总数-节点数,可能是正数或者负数
+//当前的过载量: 当前节点数量 + dfs(left) + dfs(right) - 1
+
