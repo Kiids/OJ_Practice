@@ -26,18 +26,18 @@
  */
 class Solution {
 public:
-    unordered_map<int, int> prefix;         // <前缀和，出现次数>
+    unordered_map<int, int> prefix;                     // <前缀和，出现次数>
     void DFS(TreeNode* root, int sum, int cursum, int& res)
     {
         if (!root)
             return;
-        cursum += root->val;
-        if (prefix.find(cursum - sum) != prefix.end())
+        cursum += root->val;                            // 更新前缀和
+        if (prefix.find(cursum - sum) != prefix.end())  // 当前路径中存在以当前节点为终点的和为sum的子路径
             res += prefix[cursum - sum];
-        prefix[cursum]++;
-        DFS(root->left, sum, cursum, res);
-        DFS(root->right, sum, cursum, res);
-        prefix[cursum]--;
+        prefix[cursum]++;                               // 将当前节点加入路径
+        DFS(root->left, sum, cursum, res);              // 左子树递归
+        DFS(root->right, sum, cursum, res);             // 右子树递归
+        prefix[cursum]--;                               // 回溯
     }
 
     int pathSum(TreeNode* root, int targetSum) {
