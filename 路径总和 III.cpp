@@ -41,8 +41,8 @@ public:
     }
 
     int pathSum(TreeNode* root, int targetSum) {
-        int ret = 0;
-        prefix[0] = 1;
+        int ret = 0;                                    // 满足条件的路径数量
+        prefix[0] = 1;                                  // 前缀和为0的路径只有一条：哪个节点都不选
         DFS(root, targetSum, 0, ret);
         return ret;
     }
