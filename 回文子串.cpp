@@ -22,8 +22,8 @@ public:
         int result = 0;
         for (int i = 0; i < s.size(); i++)
         {
-            result += extend(s, i, i, s.size());
-            result += extend(s, i, i + 1, s.size());
+            result += extend(s, i, i, s.size());      // 以i为中心
+            result += extend(s, i, i + 1, s.size());  // 以i和i+1为中心
         }
         return result;
     }
@@ -39,3 +39,10 @@ public:
         return ret;
     }
 };
+
+//首先确定回文串，找中心然后向两边扩散看是否对称。
+//遍历中心点有两种情况。
+//一个元素作为中心点，两个元素作为中心点。
+//时间复杂度：O(n^2)
+//空间复杂度：O(1)
+
