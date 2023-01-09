@@ -46,3 +46,22 @@ public:
 //时间复杂度：O(n^2)
 //空间复杂度：O(1)
 
+class Solution {
+public:
+    int countSubstrings(string s) {
+        vector<vector<bool>> dp(s.size(), vector<bool>(s.size(), false));
+        int ret = 0;
+        for(int i = s.size() - 1; i >= 0; i--)
+        {
+            for(int j = i; j < s.size(); j++)
+            {
+                if(s[i] == s[j] && (j - i <= 1 || dp[i + 1][j - 1]))
+                {
+                    ret++;
+                    dp[i][j] = true;
+                }
+            }
+        }
+        return ret;
+    }
+};
