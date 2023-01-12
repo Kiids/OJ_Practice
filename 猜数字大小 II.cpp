@@ -39,7 +39,33 @@ public:
 // 区间长度大的状态需要利用区间长度小的状态转移而来，
 // 第一层for枚举区间的长度，第二层for枚举区间的起点(左端点)，
 // 有了区间的长度和起点(左端点)，计算区间的终点(右端点)，第三次 for 枚举猜的数字，即分界点。
-// 初始化边界。
+// 初始化边界
 // 时间复杂度：O(n^3)
 // 空间复杂度：O(n^2)
 
+
+class Solution {
+    int v[201][201];
+    int DFS(int left, int right)
+    {
+        if (left >= right)
+            return 0; 
+        if (v[left][right] != 0)
+            return v[left][right];
+
+        int ret = INT_MAX;
+        for (int val = left; val <= right; val++)
+        {
+            int sub_left = DFS(left, val - 1);
+            int sub_right = DFS(val + 1, right);
+            int max_sub = max(sub_left, sub_right) + val;
+            ret = min(ret, max_sub);
+        }
+        v[left][right] = ret;
+        return ret;
+    }
+public:
+    int getMoneyAmount(int n) {
+        return DFS(1, n);
+    }
+};
