@@ -43,9 +43,42 @@ public:
     }
 };
 
-
 // 显然所有「升级水桶」的操作在「蓄水」操作之前
 // 枚举「蓄水」次数，倒推出每个水桶的容量，并计算出「升级水桶」的操作次数
 // 枚举「蓄水」的次数 k，那么对于容量为 v 的水缸，就至少需要一个容量为 v / k 向上取整。
 // 这样计算出每个水桶需要「升级」多少次
 
+class Solution {
+public:
+    int storeWater(vector<int>& bucket, vector<int>& vat) {
+        int time = 0;
+        priority_queue<vector<int>> pq;
+        for (int i = 0; i < bucket.size(); i++)
+        {
+            if (vat[i] == 0)
+                continue;
+            if (bucket[i] == 0)
+            {
+                time++;
+                bucket[i]++;
+            }
+            pq.push({(vat[i] - 1) / bucket[i] + 1, bucket[i], i});
+        }
+
+        int ret = INT_MAX;
+        while (!pq.empty())
+        {
+            auto q = pq.top();
+            pq.pop();
+            if (time >= ret)
+                break;
+            ret = min(ret, q[0] + time);
+
+            int i = q[2];
+            int x = q[1] + 1;
+            pq.push({(vat[i] - 1) / x + 1, x, i});
+            time++;
+        }
+        return ret == INT_MAX ? 0 : ret;
+    }
+};
