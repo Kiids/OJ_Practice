@@ -38,14 +38,23 @@ public:
     }
 };
 
+// 从外到内一圈一圈进行旋转 
+// 每四个为一组进行相应的旋转
+
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
         int n = matrix.size();
-        for (int i = 0; i < n / 2; i++)
+        for (int i = 0; i < n / 2; i++)  // 上下翻转
             matrix[i].swap(matrix[n - 1 - i]);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)      // 主对角线翻转
             for (int j = i; j < n; j++)
                 swap(matrix[i][j], matrix[j][i]);
     }
 };
+
+// 先上下调转，再以斜对角线（左上到右下）为轴对称调转
+// 第i行->第n-i-1列
+// 第j列->第j行
+// 上下调转x[i][j]=x[n-1-i][j]
+// 再按斜对角线为轴对称调转x[n-1-i][j]=x[j][n-i-1]
