@@ -1,5 +1,5 @@
 /*
-给定一个整数数组 A，我们只能用以下方法修改该数组：我们选择某个索引 i?并将 A[i] 替换为 -A[i]，然后总共重复这个过程 K 次。（我们可以多次选择同一个索引 i。）
+给定一个整数数组 A，我们只能用以下方法修改该数组：我们选择某个索引 i 并将 A[i] 替换为 -A[i]，然后总共重复这个过程 K 次。（我们可以多次选择同一个索引 i。）
 以这种方式修改数组后，返回数组可能的最大和。
 示例 1：
 输入：A = [4,2,3], K = 1
@@ -27,19 +27,24 @@ public:
     }
 
     int largestSumAfterKNegations(vector<int>& nums, int k) {
-        int ret = 0;
-        sort(nums.begin(), nums.end(), cmp);
-        for (int i = 0; i < nums.size(); i++)
+        sort(nums.begin(), nums.end(), cmp);   // 将数组按照绝对值从大到小排序 
+        for (int i = 0; i < nums.size(); i++)  // 从前向后遍历
         {
-            if (nums[i] < 0 && k > 0)
+            if (nums[i] < 0 && k > 0)          // 遇到负数将其变为正数，K--
             {
                 nums[i] = -nums[i];
                 k--;
             }
-            ret += nums[i];
         }
-        if (k % 2 == 1)
-            ret -= 2 * nums[nums.size() - 1];
+        if (k % 2 == 1)                        // 如果K大于0，那么反复转变数值最小的元素，将K用完
+            nums[nums.size() - 1] *= -1;
+        int ret = 0;
+        for (int e : nums)                     // 求和
+			ret += e; 
         return ret;
     }
 };
+
+// 贪心
+// 先将数组按照绝对值从大到小排序 遇见负数就取反，若到最后还剩余K的值，则对绝对值最小的数重复操作
+
