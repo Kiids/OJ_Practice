@@ -21,11 +21,11 @@ public:
             return 0;
         if (n <= 3)
             return 1;
-        string cur = "122";
-        bool flag = true;
+        string cur = "122";          // 初始化
+        bool flag = true;            // 翻转标志位: true -> 1，false -> 2
         for (int i = 2; cur.size() < n; i++)
         {
-            int t = cur[i] - '0';
+            int t = cur[i] - '0';    // 按数字决定填充的数量
             while (t > 0)
             {
                 cur += flag ? '1' : '2';
@@ -34,7 +34,7 @@ public:
             flag = flag ^ 1;
         }
         int ret = 0;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)  // 求 1 的个数 
             ret += cur[i] == '1';
         return ret;
     }
