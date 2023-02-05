@@ -45,8 +45,8 @@ public:
             return nullptr;
         queue<Node*> q;
         Node* cur = root;
-        q.push(root);
-        int n = 1;
+        q.push(root);    // 按层存储树结点
+        int n = 1;       // 当层结点尚未遍历的结点个数
         while (!q.empty())
         {
             q.pop();
@@ -55,7 +55,7 @@ public:
                 q.push(cur->left);
             if (cur->right)
                 q.push(cur->right);
-            if (n == 0)
+            if (n == 0)  // 该层遍历完毕
             {
                 cur->next = nullptr;
                 n = q.size();
