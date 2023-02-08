@@ -42,3 +42,6 @@ public:
         return dp[arr.size() - 1];  
     }
 };
+
+// dp[i] arr数组下标0-i的子数组，满足题目要求的元素最大和
+
