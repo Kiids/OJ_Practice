@@ -28,20 +28,20 @@ public:
         for (int i = 1; i < arr.size(); i++)
         {
             int maxi = arr[i];
-            for (int j = 1; j <= k && i - j + 1 >= 0; j++)
+            for (int j = 1; j <= k && i - j + 1 >= 0; j++)  // 子数组长度 j 
             {
                 maxi = max(maxi, arr[i - j + 1]);
-                if (i - j + 1 == 0)
+                if (i - j + 1 == 0)                         // 此时子数组下标为 0 到 i 
                 {
                     dp[i] = max(dp[i], maxi * j);
                     continue;
                 }
-                dp[i] = max(dp[i], dp[i - j] + maxi * j);
+                dp[i] = max(dp[i], dp[i - j] + maxi * j);   // 子数组长度小于等于 k 
             }
         } 
         return dp[arr.size() - 1];  
     }
 };
 
-// dp[i] arr数组下标0-i的子数组，满足题目要求的元素最大和
+// dp[i] arr数组下标 0-i 的子数组，满足题目要求的元素最大和
 
