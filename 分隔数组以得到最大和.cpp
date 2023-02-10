@@ -28,16 +28,16 @@ public:
         for (int i = 1; i < arr.size(); i++)
         {
             int maxi = arr[i];
-            for (int j = 1; j <= k && i - j + 1 >= 0; j++)  // 子数组长度 j 
+            for (int j = 1; j <= k && i - j + 1 >= 0; j++)  // 子数组长度 j，找 i 前面最近的 j 数字中的最大值 
             {
-                maxi = max(maxi, arr[i - j + 1]);
-                if (i - j + 1 == 0)                         // 此时子数组下标为 0 到 i 
+                maxi = max(maxi, arr[i - j + 1]);           // 随着 j 增加，每次向左扩充一位
+                if (i - j + 1 == 0)                         // 此时子数组下标为 0 到 i，最近的 j 位都替换成 maxi，结果最大 
                 {
                     dp[i] = max(dp[i], maxi * j);
                     continue;
                 }
-                dp[i] = max(dp[i], dp[i - j] + maxi * j);   // 子数组长度小于等于 k 
-            }
+                dp[i] = max(dp[i], dp[i - j] + maxi * j);   // 子数组长度小于等于 k，i - j + 1前面一位是 i - j 
+            } 
         } 
         return dp[arr.size() - 1];  
     }
