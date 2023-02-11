@@ -36,7 +36,7 @@ public:
                     dp[i] = max(dp[i], maxi * j);
                     continue;
                 }
-                dp[i] = max(dp[i], dp[i - j] + maxi * j);   // 子数组长度小于等于 k，i - j + 1前面一位是 i - j 
+                dp[i] = max(dp[i], dp[i - j] + maxi * j);   // 子数组长度小于等于 k，i - j + 1前面一位是 i - j，分隔两段子数组 
             } 
         } 
         return dp[arr.size() - 1];  
