@@ -50,3 +50,32 @@ public:
 // 递归终点是k为0，就是在棋盘上且无需继续移动的情况；此时不会出局的概率是100%。
 // 搜索的过程中，会重复搜索到同一个位置，在步数位置确定的时候，其概率也是确定的，记录下来避免重复计算。
 
+constexpr int dirs[8][2] = {{-1, -2}, {-1, 2}, {1, -2}, {1, 2}, {-2, 1}, {-2, -1}, {2, 1}, {2, -1}};
+class Solution {
+    double dp[26][26][101];
+public:
+    double knightProbability(int n, int k, int row, int column) {
+        for (int x = 0; x <= k; x++)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (x == 0)
+                    {
+                        dp[i][j][x] = 1.0;
+                        continue;
+                    }
+                    for (auto d : dirs)
+                    {
+                        int nx = i + d[0];
+                        int ny = j + d[1];
+                        if (nx >= 0 && nx < n && ny >= 0 && ny < n)
+                            dp[i][j][x] += dp[nx][ny][x - 1] / 8;
+                    }
+                }
+            }
+        }
+        return dp[row][column][k];
+    }
+};
