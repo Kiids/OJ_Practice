@@ -28,7 +28,7 @@ data = [235, 140, 4], 表示 8 位的序列: 11101011 10001100 00000100.
 class Solution {
 public:
     bool validUtf8(vector<int>& data) {
-        int ret = 0;
+        int ret = 0;  // 判断 data 首字节后一共有几个字节
         for (const int& e : data)
         {
             if (ret == 0)
@@ -52,3 +52,10 @@ public:
         return ret == 0;
     }
 };
+
+//UTF-8 中的一个字符可能的长度为 1 到 4 字节,因此只判断编码中的前1-5bits value.
+//分5种情况:
+//首字节（4种情况）：0xxxxxxx, 110xxxxx, 1110xxxx, 11110xxx, 后面字节（1种情况）：10xxxxxx
+//需要对这5种情况分别进行讨论便知道所给编码是否合法.
+//判断采用右移法
+
