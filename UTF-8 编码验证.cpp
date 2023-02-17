@@ -33,23 +33,23 @@ public:
         {
             if (ret == 0)
             {
-                if ((e >> 5) == 0b110)
+                if ((e >> 5) == 0b110)         // 首字节 110xxxxx
                     ret = 1;
-                else if ((e >> 4) == 0b1110)
+                else if ((e >> 4) == 0b1110)   // 首字节 1110xxxx
                     ret = 2;
-                else if ((e >> 3) == 0b11110)
+                else if ((e >> 3) == 0b11110)  // 首字节 11110xxx
                     ret = 3;
                 else if ((e >> 7))
                     return false;
             }
             else
             {
-                if ((e >> 6) != 0b10)
+                if ((e >> 6) != 0b10)          // 面字节 10xxxxxx
                     return false;
                 ret--;
             }
         }
-        return ret == 0;
+        return ret == 0;                       // 首字节 0xxxxxxx
     }
 };
 
