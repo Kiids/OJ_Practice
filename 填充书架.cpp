@@ -23,13 +23,13 @@ public:
     int minHeightShelves(vector<vector<int>>& books, int shelfWidth) {
         vector<int> dp(books.size() + 1, INT_MAX);
         dp[books.size()] = 0;
-        for (int i = books.size() - 1; i >= 0; i--)
+        for (int i = books.size() - 1; i >= 0; i--)                              // 倒着处理书本，数组的最后一个在整个书架的最上面
         {
-            int max_book_height = 0, left_width = shelfWidth;
-            for (int j = i; j < books.size() && left_width >= books[j][0]; j++)
+            int max_book_height = 0, left_width = shelfWidth;                    // 假设这一层高度为 0，当前层剩余的宽度为 leftWidth 
+            for (int j = i; j < books.size() && left_width >= books[j][0]; j++)  // 根据处理到的书以及之前出现的，尝试把之前出现的书放到当前层，看看能不能达到最小值
             {
                 max_book_height = max(max_book_height, books[j][1]);
-                dp[i] = min(dp[i], max_book_height + dp[j+1]);
+                dp[i] = min(dp[i], max_book_height + dp[j + 1]);
                 left_width -= books[j][0];
             }
         }
