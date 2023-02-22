@@ -39,3 +39,19 @@ public:
 //如果鸡蛋在 k 层丢下后没碎，接下来问题转化成 i = 1 时验证 j - k 层需要的次数，即 dp[1][j - k], 总操作次数为 dp[1][j - k] + 1，
 //考虑最坏的情况，两者取最大值则有 dp[1][j] = min(dp[1][j], max(dp[0][k - 1] + 1, dp[1][j - k] + 1))
 
+class Solution {
+public:
+    int twoEggDrop(int n) {
+        vector<int> dp(n + 1, INT_MAX);
+        dp[0] = 0;
+        for (int j = 1; j <= n; j++)
+            for (int k = 1; k <= j; k++)
+                dp[j] = min(dp[j], max(k, dp[j - k] + 1));
+        return dp[n];
+    }
+};
+
+//一维dp 
+//时间复杂度： O(n2), n为楼层数
+//空间复杂度： O(n)
+
