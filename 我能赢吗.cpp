@@ -48,3 +48,34 @@ public:
         return dp[0];
     }
 };
+
+class Solution {
+public:
+    bool canIWin(int maxChoosableInteger, int desiredTotal) {
+        if ((1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal)
+            return false;
+        vector<int> dp(1 << maxChoosableInteger + 1, -1);
+        return dfs(dp, maxChoosableInteger, desiredTotal, 0, 0);
+    }
+
+    bool dfs(vector<int>& dp, int mci, int dt, int sc, int state) {
+        // 当前分数，当前状态, 返回当前玩家能不能赢
+        if (dp[state] == -1)
+		{
+            for (int i = mci, select = 2 << (mci - 1); i >= 1; --i, select >>= 1)
+			{
+                if ((state & select) == 0)
+				{
+                    if (sc + i >= dt || !dfs(dp, mci, dt, sc + i, state | select))
+					{
+                        dp[state] = 1;
+                        break;
+                    }
+                }
+            }
+            if (dp[state] == -1)
+				dp[state] = 0;
+        }
+        return dp[state] == 1;
+    }
+};
