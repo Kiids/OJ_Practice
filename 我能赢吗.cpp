@@ -26,7 +26,7 @@
 class Solution {
 public:
     bool canIWin(int maxChoosableInteger, int desiredTotal) {
-        if ((1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal)  // 1到maxChoosableInteger的整数和小于desiredTotal 
+        if ((1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal)  // 1到maxChoosableInteger的整数和小于desiredTotal，即加起来都不超过的话一定会输 
             return false;
         int state_max = 1 << maxChoosableInteger;
         vector<char> dp(state_max, 0);
@@ -41,7 +41,7 @@ public:
             {
                 if ((1 << k) & i)
                     continue;
-                if (k + 1 >= total || !dp[(1 << k) | i])  // 玩家游戏时表现最佳是指先手选择一个数字后后手必输，即当前状态的下一个状态为输
+                if (k + 1 >= total || !dp[(1 << k) | i])  // 玩家游戏时表现最佳是指先手选择一个数字后后手必输k + 1 >= total，即当前状态的下一个状态为输!dp[(1 << k) | i]
                     dp[i] = 1;
             }
         }
@@ -58,8 +58,9 @@ public:
         return dfs(dp, maxChoosableInteger, desiredTotal, 0, 0);
     }
 
-    bool dfs(vector<int>& dp, int mci, int dt, int sc, int state) {
-        // 当前分数，当前状态, 返回当前玩家能不能赢
+    bool dfs(vector<int>& dp, int mci, int dt, int sc, int state) { 
+    	// dp[i]-是否赢，mci-可选的最大数字，dt-赢的时候需要达到的数字 
+        // sc当前分数，state当前状态, 返回当前玩家能不能赢
         if (dp[state] == -1)
 		{
             for (int i = mci, select = 2 << (mci - 1); i >= 1; --i, select >>= 1)
@@ -80,11 +81,11 @@ public:
     }
 };
 
-//最多可选 20 个数，可以使用一个 int 表示哪些数字选过，哪些数字没选过，然后 dfs 枚举搜索，
-//当数字超过给定的界限或者向下搜索发现对方不能赢，那我就能赢
-//dfs(player, score, state)，参数分别表示玩家，分数，和 int 表示的已经选择过的数字的状态，
-//实际上根据最后一个参数状态是可以反推玩家和分数的，所以可以化简为 dfs(state)，仅状态即可。
-//使用记忆化搜索的方法避免重复状态的搜索，此时最多会有 2^20!=1,048,576 种状态，
-//对每一个数字只有已选择和未选择两种可能，共 20 个数字
-//若所有数字累加都达不到要求，那么返回 false
+// 最多可选 20 个数，可以使用一个 int 表示哪些数字选过，哪些数字没选过，然后 dfs 枚举搜索，
+// 当数字超过给定的界限或者向下搜索发现对方不能赢，那我就能赢
+// dfs(player, score, state)，参数分别表示玩家，分数，和 int 表示的已经选择过的数字的状态，
+// 实际上根据最后一个参数状态是可以反推玩家和分数的，所以可以化简为 dfs(state)，仅状态即可。
+// 使用记忆化搜索的方法避免重复状态的搜索，此时最多会有 2^20!=1,048,576 种状态，
+// 对每一个数字只有已选择和未选择两种可能，共 20 个数字
+// 若所有数字累加都达不到要求，那么返回 false
 
