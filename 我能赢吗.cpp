@@ -89,3 +89,45 @@ public:
 // 对每一个数字只有已选择和未选择两种可能，共 20 个数字
 // 若所有数字累加都达不到要求，那么返回 false
 
+class Solution {
+public:
+    unordered_map<int, bool> m;  // 记忆化hash，记录选择哪些数的情况当前玩家的胜负，减少时间复杂度
+    bool canIWin(int maxChoosableInteger, int desiredTotal) {
+        if ((1 + maxChoosableInteger) * (maxChoosableInteger) / 2 < desiredTotal)  // 加起来都不能超过的话都不能赢 
+            return false;
+        return DFS(maxChoosableInteger, 0, desiredTotal, 0);  // 递归判断先手能不能赢，先手从0开始
+    }
+
+    bool DFS(int maxChoosableInteger, int usedNumbers, int desiredTotal, int currentTotal)
+    {
+    	// maxChoosableInteger 供选择的数
+    	// userNumbers  被选择的数，用二进制表示，0010则表示2已经被选择，0001表示1已被选择
+    	// desiredTotal  累计整数合需要超过的目标值
+    	// currentTotals  当前累计整数合
+        if (!m.count(usedNumbers))  // 未曾判断过这种场景
+        {
+            bool ret = false;
+            for (int i = 0; i < maxChoosableInteger; i++)  // 循环遍历选择每个数的情况，如果循环完所有的情况，都赢不了，就输了，初始ret为输
+            {
+            	// (userNumbers >> i) & 1 ：判断i+1是否已经被访问 
+                if (((usedNumbers >> i) & 1) == 0)  // 若这个数还没被选择，往下继续，否则进入下一轮循环，这里i从0开始，判断的是第i+1个数的情况
+                {
+                    if (i + 1 + currentTotal >= desiredTotal)  // 如果选完能直接胜利，true
+                    {
+                        ret = true;
+                        break;
+                    }
+                    // userNumbers | (1 << i)：把i+1标记为访问 
+                    if (!DFS(maxChoosableInteger, usedNumbers | (1 << i), desiredTotal, currentTotal + i + 1))  // 否则递归判断，我选完后，对方选完是不是就输了；对方输了，我就赢了
+                    {
+                        ret = true;
+                        break;
+                    }
+                }
+            }
+            m[usedNumbers] = ret;  // 结果放入hashmap 
+        }
+        return m[usedNumbers];
+    }
+};
+
