@@ -30,7 +30,7 @@ public:
                         grid[j][k] = -(grid[j][k] - 1);
                 else
                     grid[j][i] ? n1++ : n0++;
-            if (n0 > n1)
+            if (n0 > n1)  // 判断翻转横向还是纵向 
                 for (int j = 0; j < n; j++)
                     grid[j][i] = -(grid[j][i] - 1);
             for (int j = 0; j < n; j++)
