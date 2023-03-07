@@ -41,3 +41,25 @@ public:
         return ret;
     }
 };
+
+class Solution {
+public:
+    int matrixScore(vector<vector<int>>& grid) {
+        int i = 0, j = 0, sum = 0, ret = 0;
+        ret = grid.size() * (1 << (grid[0].size() - 1));
+        for (j = 1; j < grid[0].size(); j++)
+        {
+            for (sum = 0, i = 0; i < grid.size(); i++)
+            {
+                if (grid[i][0])
+                    sum += grid[i][j];
+                else
+                    sum += 1 - grid[i][j];
+            }
+            // sum = max(sum, grid.size() - sum);
+            sum = sum > (grid.size() - sum) ? sum : (grid.size() - sum);
+            ret += sum * (1 << (grid[0].size() - 1 - j));
+        }
+        return ret;
+    }
+};
