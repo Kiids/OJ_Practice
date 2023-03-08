@@ -46,7 +46,7 @@ class Solution {
 public:
     int matrixScore(vector<vector<int>>& grid) {
         int i = 0, j = 0, sum = 0, ret = 0;
-        ret = grid.size() * (1 << (grid[0].size() - 1));
+        ret = grid.size() * (1 << (grid[0].size() - 1));  // 如果每一行的第一的首元素不为零，则翻转该行，使行首元素置0，此时第0列的数据全为1，求和 
         for (j = 1; j < grid[0].size(); j++)
         {
             for (sum = 0, i = 0; i < grid.size(); i++)
@@ -63,3 +63,9 @@ public:
         return ret;
     }
 };
+
+// 贪心
+// 如果每一行的第一的首元素不为零，则翻转该行，使行首元素置0，此时第0列的数据全为1，
+// 然后遍历其他列，使每一列的1的个数尽可能的多些。
+// 时间复杂度:O(n*m)
+
