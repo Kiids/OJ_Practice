@@ -29,19 +29,52 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        map<char, int> m;
+        map<char, int> m;  // 字符 - 出现次数 
         string ret = "";
         for (auto& c : s)
             m[c]++;
         while (!m.empty())
         {
             auto pos = m.begin();
-            for (auto i = m.begin(); i != m.end(); i++)
+            for (auto i = m.begin(); i != m.end(); i++)  // 每次找次数最高的那个 
                 if (i->second > pos->second)
                     pos = i;
             ret.insert(ret.size(), pos->second, pos->first);
             m.erase(pos);
         }
         return ret;
+    }
+};
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char, int> mp;
+        for (const auto& c : s)
+            mp[c]++;
+        priority_queue<pair<int, char>> pq;  // 优先队列 
+        for (const auto &m : mp)
+            pq.push({m.second, m.first});
+            
+        string ret;
+        while (!pq.empty())
+        {
+            auto t = pq.top(); 
+            pq.pop();
+            ret.append(t.first, t.second);
+        }
+        return ret;
+    }
+};
+ 
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char, int> m;
+        for (const auto& c : s)
+            m[c]++;
+        // lambda自定义排序 
+        sort(s.begin(), s.end(), [&](char &a, char &b) { return m[a] > m[b] || (m[a] == m[b] && a < b); });
+        return s;
     }
 };
