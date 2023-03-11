@@ -21,4 +21,23 @@ public:
     }
 };
 
-// 类似找中位数
+// 双指针 
+// 转化为求数轴上n个点到某个点距离和的最小值，即找到这个使距离和最小的点—中位数 
+// 计算从两边到中间，逐个加上区间长度，直到没东西可加为止。
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        const int N = nums.size();
+        int mid = nums[N / 2], ret = 0;
+        for (int n : nums)
+            ret += abs(n - mid);
+        return ret;
+    }
+};
+
+// 排序
+// 取中位数
+// 计算将所有数字移动到中位数需要移动多少次，并累加
+
