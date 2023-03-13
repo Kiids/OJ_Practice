@@ -41,3 +41,29 @@ public:
         return v;
     }
 };
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        // 存放 hash map 
+        unordered_map<int,int> m;
+        for (int num : nums)
+            m[num]++;
+
+        // 优先队列 
+        priority_queue<pair<int, int>> q;
+        // 按照 m.second 实现大根堆
+        for (auto i : m)
+            q.emplace(i.second, i.first);
+        
+        // 求解
+        vector<int> ret;
+        while (k)
+        {
+            ret.emplace_back(q.top().second);
+            q.pop();
+            k--;
+        }
+        return ret;
+    }
+};
