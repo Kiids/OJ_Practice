@@ -47,3 +47,22 @@ public:
 //而末尾的 01 则是另一段可以用来统计答案的数据
 //对字符串结尾增加一个字符，可以将判断逻辑写在一个地方
 
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        int pre = 0, cur = 1, ret = 0;
+        for (int i = 1; i < s.size(); i++)
+        {
+            if (s[i] == s[i - 1])
+                cur++;
+            else
+            {
+                ret += min(pre, cur);
+                pre = cur;
+                cur = 1;
+            }
+        }
+        ret += min(pre, cur);
+        return ret;
+    }
+};
