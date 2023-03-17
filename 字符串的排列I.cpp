@@ -18,18 +18,18 @@ public:
     bool checkInclusion(string s1, string s2) {
         int n = s2.size(), k = s1.size();
         unordered_map<char, int> hash;
-        for (auto c: s1)
-            hash[c] ++ ;
+        for (auto c: s1)             // 记录 s1 各个字母个数 
+            hash[c]++;
         int cnt = 0, t = hash.size();
         for (int i = 0, j = 0; i < n; i++)
         {
-            if (--hash[s2[i]] == 0)
+            if (--hash[s2[i]] == 0)  // 某个字母个数一致则 cnt++ 
                 cnt++;
-            while (i - j + 1 > k)
+            while (i - j + 1 > k)    // 当前判断的子串长度大于 s1 的长度了 
             {
-                if (!hash[s2[j]])
+                if (!hash[s2[j]])    // 边界字符 
                     cnt--;
-                hash[s2[j++]]++ ;
+                hash[s2[j++]]++;     // 从边界字符开始继续遍历 
             }
             if (cnt == t)
                 return true;
