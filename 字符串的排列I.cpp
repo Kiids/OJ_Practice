@@ -45,17 +45,18 @@ public:
         if (n > m)
             return false;
         vector<int> cnt1(26), cnt2(26);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)   //遍历数组 记录cnt1和cnt2 设置滑动窗口的大小为n
         {
             ++cnt1[s1[i] - 'a'];
             ++cnt2[s2[i] - 'a'];
         }
         if (cnt1 == cnt2)
-            return true;
-        for (int i = n; i < m; i++)
+            return true;              // 相等则true
+        for (int i = n; i < m; i++)   // 滑动窗口大小为n
         {
-            ++cnt2[s2[i] - 'a'];
-            --cnt2[s2[i-n] - 'a'];
+            ++cnt2[s2[i] - 'a'];      // 加一位
+            --cnt2[s2[i - n] - 'a'];  // 减一位
+                                      // 窗口右移一位 
             if (cnt1 == cnt2)
                 return true;
         }
