@@ -18,15 +18,16 @@ class Solution {
 public:
     int numSquares(int n) {
         int maxNum = (int)sqrt(n);
-        vector<int> v;
+        vector<int> v;                                     // 存放可能的完全平方数 
         for (int i = 1; i <= maxNum; i++)
             v.push_back((int)pow(i, 2));
-        vector<int> ret(n+1, INT_MAX);
+        vector<int> ret(n + 1, INT_MAX);                   // 每个数的最优解
         ret[0] = 0;
         for (int i = 1; i <= n; i++)
             for (int j : v)
-                if (i - j >= 0 && ret[i-j] != INT_MAX)
-                    ret[i] = min(ret[i], ret[i - j] + 1);
+                if (i - j >= 0 && ret[i - j] != INT_MAX)
+                    ret[i] = min(ret[i], ret[i - j] + 1);  // 更新最优解 
         return ret[n];
     }
 };
+
