@@ -31,3 +31,17 @@ public:
     }
 };
 
+class Solution {
+public:
+    int numSquares(int n) {
+        vector<int> ret(n + 1, 0x7FFFFFFF);  // 每个数的最优解
+        ret[0] = 0;
+        for (int i = 1; i <= n; i++)
+            for (int j = 1; i - j * j >= 0; j++)
+                ret[i] = min(ret[i], ret[i - j * j] + 1);
+        return ret[n];
+    }
+};
+
+// N的最优解 = 1 + （N’的最优解）。而N'肯定小于N。
+
