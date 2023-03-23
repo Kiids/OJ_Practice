@@ -50,3 +50,49 @@ public:
 };
 
 // 递归 
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    vector<vector<vector<TreeNode*>>> v;  //记忆化 
+    vector<TreeNode*> fun(int l, int r)
+    {
+        vector<TreeNode*> ret;
+        // 边界条件
+        if (l > r)
+            return {NULL};
+        if (!v[l][r].empty())
+            return v[l][r];
+        // 递归
+        for (int i = l; i <= r; i++)
+        {
+            for (auto& l : fun(l, i - 1))
+            {
+                for (auto& r : fun(i + 1, r))
+                {
+                    TreeNode* root = new TreeNode(i, l, r);
+                    ret.push_back(root);
+                }
+            }            
+        }
+        return v[l][r] = ret;  // 记忆化添加
+    }
+public:
+    vector<TreeNode*> generateTrees(int n) {
+        v.resize(n + 1, vector<vector<TreeNode*>>(n + 1));  // 记忆化添加 
+        if (n == 0)
+            return {};
+        return fun(1, n);
+    }
+};
+
