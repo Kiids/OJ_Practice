@@ -25,8 +25,10 @@ public:
         for (int i = 0; i < nums.size(); i++)
         {
             n[nums[i]]++;
-            if (first[nums[i]] == -1)
+            if (first[nums[i]] == -1)   // 第一次出现，做标记
                 first[nums[i]] = i;
+                
+            // 当出现更大的度 或者 度相同但长度更短 则更新答案 
             if (n[nums[i]] > ret.first || (n[nums[i]] == ret.first && i - first[nums[i]] + 1 < ret.second))
                 ret = {n[nums[i]], i - first[nums[i]] + 1};
         }
@@ -34,4 +36,7 @@ public:
     }
 };
 
-// 哈希 
+//n[i]表示当前i出现的次数，first[i]表示i第一次出现的下标
+//对于ret，first表示遍历至当前的最大度，second表示最大度对应数组的最短长度
+//一轮遍历更新答案
+
