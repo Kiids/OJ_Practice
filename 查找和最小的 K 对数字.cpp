@@ -32,10 +32,10 @@ public:
         if (n > m)  // 确保nums1为两数组中长度较少的那个
         {
             swap(nums1, nums2);
-            swap(m,n);
+            swap(m, n);
             flag = false;
         }
-        auto cmp = [&](const auto& a, const auto& b){
+        auto cmp = [&](const auto& a, const auto& b){  // 定义比较规则
             return nums1[a.first] + nums2[a.second] > nums1[b.first] + nums2[b.second];
         };
         priority_queue< pair<int,int>, vector<pair<int,int>>, decltype(cmp) > q(cmp);
