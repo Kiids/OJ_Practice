@@ -38,7 +38,7 @@ public:
         auto cmp = [&](const auto& a, const auto& b){  // 定义比较规则
             return nums1[a.first] + nums2[a.second] > nums1[b.first] + nums2[b.second];
         };
-        priority_queue< pair<int,int>, vector<pair<int,int>>, decltype(cmp) > q(cmp);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> q(cmp);
         for (int i = 0; i < min(n, k); i++)
             q.push( {i, 0} );
         while (v.size() < k and q.size())
@@ -46,7 +46,8 @@ public:
             auto [a,b] = q.top();
             q.pop();
             flag ? v.push_back( {nums1[a], nums2[b]}) : v.push_back( {nums2[b], nums1[a]});
-            if(b + 1 < m) q.push( {a, b + 1} );
+            if (b + 1 < m)
+				q.push( {a, b + 1} );
         }
         return v;
     }
@@ -58,4 +59,11 @@ public:
 // 确保答案的点顺序的正确性。每次从优先队列（堆）中取出堆顶元素
 // 含义为当前未被加入到答案的所有点对中的最小值，加入答案，
 // 并将该点对所在序列的下一位（如果有）加入优先队列中。
-
+// template <class T, class Container = vector<T>,class Compare = less<typename Container::value_type> >
+// class priority_queue;
+// class T：T是优先队列中存储的元素的类型。
+// class Container = vector<T>：Container是优先队列底层使用的存储结构，默认vector。
+// class Compare = less<typename Container::value_type> ：Compar是定义优先队列中元素的比较方式的类。
+// decltype操作符，用于查询表达式的数据类型。decltype在C++11标准制定时引入，主要是为泛型编程而设计，
+// 以解决泛型编程中，由于有些类型由模板参数决定，而难以（甚至不可能）表示之的问题。
+// decltype选择并返回操作数的数据类型，在此过程中，编译器分析表达式并得到它的类型，却不实际计算表达式的值。
