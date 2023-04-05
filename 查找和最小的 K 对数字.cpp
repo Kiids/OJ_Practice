@@ -67,3 +67,27 @@ public:
 // decltype操作符，用于查询表达式的数据类型。decltype在C++11标准制定时引入，主要是为泛型编程而设计，
 // 以解决泛型编程中，由于有些类型由模板参数决定，而难以（甚至不可能）表示之的问题。
 // decltype选择并返回操作数的数据类型，在此过程中，编译器分析表达式并得到它的类型，却不实际计算表达式的值。
+
+class Solution {
+    bool flag = true;
+public:
+    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        vector<vector<int>> v;
+        auto cmp = [&nums1, &nums2] (const pair<int, int>& p, const pair<int, int>& q) {
+            return nums1[p.first] + nums2[p.second] > nums1[q.first] + nums2[q.second];
+        };
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);  // 优先级队列，保存 [index1, index2]
+        for (int i = 0; i < nums1.size(); i++)  // 把 nums1 的所有索引入队，nums2 的索引初始时都是 0
+            pq.push(make_pair(i, 0));
+        while(!pq.empty() && v.size() < k)  // 最多弹出 k 次
+        {
+            auto p = pq.top();
+            pq.pop();
+            v.push_back({nums1[p.first], nums2[p.second]});
+            if (p.second < nums2.size() - 1)  // 将 index2 加 1 之后继续入队
+                pq.push(make_pair(p.first, p.second+1));
+        }
+        return v;
+    }
+};
+
