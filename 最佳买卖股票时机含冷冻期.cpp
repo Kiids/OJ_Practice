@@ -21,7 +21,7 @@ public:
         dp[0][2] = 0;
         for (int i = 1; i < n; i++)
         {
-            dp[i][0] = max(dp[i - 1][0], dp[i - 1][2]- prices[i]);
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][2] - prices[i]);
             dp[i][1] = dp[i - 1][0] + prices[i];
             dp[i][2] = max(dp[i - 1][1], dp[i - 1][2]);
         }
@@ -30,11 +30,11 @@ public:
 };
 
 // 股票买卖3个状态，
-// dp[i][0] 第i天持有股票
-// dp[i][1] 第i天处于冷冻期
-// dp[i][1] 第i天不处于冷冻期，且不持有股票
-// 由状态机得状态转移方程
-// dp[i][0]=max(dp[i-1][0],dp[i-1][2]-prices[i]);
-// dp[i][1]=dp[i-1][0]+prices[i];
-// dp[i][2]=max(dp[i-1][1],dp[i-1][2]);
+// dp[i][0] 第i天持有股票，昨天就持有且不卖出 or 今天买入 
+// dp[i][1] 第i天卖出股票 
+// dp[i][2] 第i天不持有股票
+//由状态机得状态转移方程
+//dp[i][0]=max(dp[i-1][0],dp[i-1][2]-prices[i]);
+//dp[i][1]=dp[i-1][0]+prices[i];
+//dp[i][2]=max(dp[i-1][1],dp[i-1][2]);
 
