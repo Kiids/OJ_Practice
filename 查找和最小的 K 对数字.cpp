@@ -79,20 +79,20 @@ public:
         priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);  // 优先级队列，保存 [index1, index2]
         for (int i = 0; i < nums1.size(); i++)  // 把 nums1 的所有索引入队，nums2 的索引初始时都是 0
             pq.push(make_pair(i, 0));
-        while(!pq.empty() && v.size() < k)  // 最多弹出 k 次
+        while(!pq.empty() && v.size() < k)      // 最多弹出 k 次
         {
             auto p = pq.top();
             pq.pop();
             v.push_back({nums1[p.first], nums2[p.second]});
-            if (p.second < nums2.size() - 1)  // 将 index2 加 1 之后继续入队
-                pq.push(make_pair(p.first, p.second+1));
+            if (p.second < nums2.size() - 1)    // 将 index2 加 1 之后继续入队
+                pq.push(make_pair(p.first, p.second + 1));
         }
         return v;
     }
 };
 
-//假设第一个数组长度为m，第二个长度为n；实际上就是要把所有数对分成m份，
-//每份都是第一个数组中某个数和第二个数组中每一个数组合而成，由于第二个数组是单调增的，
-//所以这m个数对也各自是单调增的。问题就转化为了从m个数对序列中，取出最小的k个数对，多路归并问题。
-//用一个堆将每一路最小的元素加入堆中；对堆中元素逐个出堆，每出一个就将该序列中的下一个元素加入队伍中。
+// 假设第一个数组长度为m，第二个长度为n；实际上就是要把所有数对分成m份，
+// 每份都是第一个数组中某个数和第二个数组中每一个数组合而成，由于第二个数组是单调增的，
+// 所以这m个数对也各自是单调增的。问题就转化为了从m个数对序列中，取出最小的k个数对，多路归并问题。
+// 用一个堆将每一路最小的元素加入堆中；对堆中元素逐个出堆，每出一个就将该序列中的下一个元素加入队伍中。
 
