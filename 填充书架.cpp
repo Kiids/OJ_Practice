@@ -23,6 +23,7 @@ public:
     int minHeightShelves(vector<vector<int>>& books, int shelfWidth) {
         vector<int> dp(books.size() + 1, INT_MAX);
         dp[books.size()] = 0;
+        // 把第 j 本书拿到第 i 本书后面
         for (int i = books.size() - 1; i >= 0; i--)                              // 倒着处理书本，数组的最后一个在整个书架的最上面
         {
             int max_book_height = 0, left_width = shelfWidth;                    // 假设这一层高度为 0，当前层剩余的宽度为 leftWidth 
@@ -38,3 +39,11 @@ public:
 };
 
 //不断的把第 i 本书后面的书拿到和 i 本书同层的位置（如果这一层放的下的话），计算这种情况下 dpi 形成的高度
+//记第 i 本书的高度为 hi，宽度为 wi，当第 i 本书排在书架某一层第一个位置的时候，
+//第 i 本到最后一本书形成的最小高度为 dpi。递推公式为：
+//dpi =min{max(hi)+dp[i+1],max(hi,h[i+1])+dp[i+2],...,max(hi ,...,hj)+dp[j+1]}
+//s.t. 
+//j
+//∑wk  <=shelf_width
+//k=i
+
