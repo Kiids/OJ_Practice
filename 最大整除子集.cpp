@@ -21,7 +21,7 @@ public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
-        pair<int, int> dp[n];
+        pair<int, int> dp[n];  // <nums[i]为结尾的最大的整除子集的大小, 遍历至满足条件的下标>
         for(int i = 0; i < n; i++)
         {
             pair<int, int> p = {1, i};
@@ -31,7 +31,7 @@ public:
             dp[i] = p;
         }
 
-        int idx = max_element(dp, dp + n) - dp;
+        int idx = max_element(dp, dp + n) - dp;  // dp.first 最大的那个下标 
         int val = dp[idx].first;
         vector<int> v;
         while (val--)
