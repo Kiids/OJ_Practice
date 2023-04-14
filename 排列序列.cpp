@@ -30,7 +30,7 @@ public:
         for (int i = 1; i < n; i++)               // 记录 i!
             v[i] = i * v[i - 1];
             
-        k--;
+        k--;                                     // 索引从 0 开始
         string s;
         vector<int> nums;
         for (int i = 1; i <= n; i++)             // 记录 i 
