@@ -27,7 +27,7 @@ public:
     string getPermutation(int n, int k) {
         vector<int> v(n);
         v[0] = 1;
-        for (int i = 1; i < n; i++)               // 记录 i!
+        for (int i = 1; i < n; i++)               // 记录 i!，以 i 开头的全排列个数 
             v[i] = i * v[i - 1];
             
         k--;                                     // 索引从 0 开始
