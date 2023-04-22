@@ -46,7 +46,7 @@ public:
     }
 
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        preorder(root, 0, targetSum, path, v);
+        preorder(root, 0, targetSum, path, v);  // ÖÐÐò±éÀúµÝ¹é 
         return v;
     }
 };
