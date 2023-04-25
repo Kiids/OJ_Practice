@@ -65,7 +65,7 @@ class Solution {
             swap(a[i], a[level]);
             backtrace(a, v, level + 1);  // 回溯
             swap(a[i], a[level]);
-            uniq.insert(a[i]);           // 用于去重
+            uniq.insert(a[i]);           // 去重
         }
     }
 public:
