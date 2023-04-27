@@ -42,3 +42,5 @@ public:
         return *max_element(v.begin(), v.end());
     }
 };
+
+// f[i](0≤i≤k) 表示以该节点为根，相邻的子节点为 蓝色 的个数为 i 的情况下（包括自身），节点价值总和的最大值；
