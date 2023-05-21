@@ -26,7 +26,7 @@ public:
         {
             pair<int, int> p = {1, i};
             for (int j = 0; j < i; j++)
-            	if (nums[i] % nums[j] == 0 && dp[j].first + 1 > p.first)
+            	if (nums[i] % nums[j] == 0 && dp[j].first + 1 > p.first)  // 是因数且子集更大 
                     p = {dp[j].first + 1, j};
             dp[i] = p;
         }
