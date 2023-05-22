@@ -48,7 +48,7 @@ public:
 // 对于 nums[i]，需要检查 [0, i-1] 位上的 nums[j]，使得 nums[i] % nums[j] == 0，
 // 即 nums[j] 是 nums[i] 的一个因数。
 // 得到 
-// dp[i] = max{j∈[0,i-1]} (dp[j]+1), if nums[i]%nums[j] == 0
+// dp[i] = max{j∈[0, i-1]} (dp[j]+1), if nums[i] % nums[j] == 0
 // 时间复杂度：O(nlogn+n^2)=O(n^2) 排序+逐位检查其前面的所有元素
 // 空间复杂度：O(n)
 
