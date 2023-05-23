@@ -31,7 +31,7 @@ public:
             dp[i] = p;
         }
 
-        int idx = max_element(dp, dp + n) - dp;  // dp.first 最大的那个下标 
+        int idx = max_element(dp, dp + n) - dp;  // dp.first 最大的那个下标 -> dp.second  
         int val = dp[idx].first;
         vector<int> v;
         while (val--)
