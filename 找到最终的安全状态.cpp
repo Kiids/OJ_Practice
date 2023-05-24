@@ -74,8 +74,8 @@ public:
         int n = graph.size();
         mark.resize(n);
         vector<int> v;
-        for(int i = 0; i < n; i++)
-            if(DFS(i, graph))
+        for (int i = 0; i < n; i++)
+            if (DFS(i, graph))
                 v.push_back(i);
         return v;
     }
