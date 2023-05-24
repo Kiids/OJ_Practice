@@ -31,7 +31,7 @@ public:
     void fun(vector<int>& nums)  // 顺序查找，直接更改原数组 
     {
 		int i = nums.size() - 2, k;
-        while (i >= 0 && nums[i] >= nums[i + 1])
+        while (i >= 0 && nums[i] >= nums[i + 1])  // 从后向前 
             i--;
 		for (k = i + 1; k <= (nums.size() + i) / 2; k++)
         	swap(nums[k], nums[nums.size() - (k - i)]);
