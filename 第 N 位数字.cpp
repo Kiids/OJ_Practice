@@ -16,20 +16,20 @@ public:
     int findNthDigit(int n) {
         long long N = n;
         int digits = 1;            // 位数 
-        long long border = 9;      // digits位数一共产生多少位数字 
+        long long border = 9;      // digits 位数一共产生多少位数字 
 
         while (N)
         {
             if (N <= border * digits)
                 break;             // 循环退出时即找到了当前数字的位数
-            N -= border * digits;  // N 为扣掉所有digits位数字（比如2位数）产生的数字之后还剩多少个数字
+            N -= border * digits;  // N 为扣掉所有 digits 位数字（比如 2 位数）产生的数字之后还剩多少个数字
             digits++;
             border *= 10;
         }
-        // 循环结束后 剩余的N都是由 digits位数 贡献的
-        // 每个 digits位数 都产生了 digits个数字； 因而我们求除求余就可以知道n对应的是第几个digits位数
+        // 循环结束后 剩余的 N 都是由 digits 位数贡献的
+        // 每个 digits 位数都产生了 digits 个数字，因而求除求余就可以知道 n 对应的是第几个 digits 位数
         int offset = (N - 1) / digits;
-        int begin = 1;             // 用于计算最小的 digits位数
+        int begin = 1;             // 用于计算最小的 digits 位数
         for (int i = 0; i < digits - 1; i++)
             begin *= 10;
         int mod = (N - 1) % digits;
