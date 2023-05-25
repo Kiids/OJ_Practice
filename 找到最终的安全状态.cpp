@@ -26,23 +26,23 @@ public:
         vector<int> dev(n);              // 记录出度 
         vector<int> ret;                 // 记录走死的点 
         vector<vector<int>> from(n);     // 记录所有的点从何而来 
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             dev[i] = graph[i].size();
-            for(int num: graph[i])
+            for (int num: graph[i])
                 from[num].push_back(i);  // num 点可以来自于 i 点 
         }
         queue<int> que;                  // 存储当前走死的点 
-        for(int i = 0; i < n; i++)
-            if(dev[i] == 0)
+        for (int i = 0; i < n; i++)
+            if (dev[i] == 0)
                 que.push(i);             // 存入走死的点 
-        while(!que.empty())
+        while (!que.empty())
         {
             int v = que.front();
             que.pop();
             ret.push_back(v);            // 将走死的点放入答案,将入度为 0 的点放入队列 
-            for(int num: from[v])
-                if(--dev[num] == 0)
+            for (int num: from[v])
+                if (--dev[num] == 0)
                     que.push(num);       // 所有到达此点的入度 -1 
         }
         sort(ret.begin(), ret.end());
