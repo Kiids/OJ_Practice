@@ -43,7 +43,7 @@ class Solution {
 public:
     int findNthDigit(long n) {
         int k = 1;
-        while (k * pow(10, k) < n)
+        while (k * pow(10, k) < n)  // ²¹ÆëÎ»Êý 
 		{
             n += pow(10, k);
             k += 1;
