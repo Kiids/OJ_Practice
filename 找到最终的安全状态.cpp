@@ -30,7 +30,7 @@ public:
         {
             dev[i] = graph[i].size();
             for (int num: graph[i])
-                from[num].push_back(i);  // num 点可以来自于 i 点 
+                from[num].push_back(i);  // num 点可以来自于 i 点，num -> i 
         }
         queue<int> que;                  // 存储当前走死的点 
         for (int i = 0; i < n; i++)
@@ -40,10 +40,10 @@ public:
         {
             int v = que.front();
             que.pop();
-            ret.push_back(v);            // 将走死的点放入答案,将入度为 0 的点放入队列 
+            ret.push_back(v);            // 将走死的点放入答案 
             for (int num: from[v])
-                if (--dev[num] == 0)
-                    que.push(num);       // 所有到达此点的入度 -1 
+                if (--dev[num] == 0)     // 所有到达此点的出度 -1 
+                    que.push(num);       // 将出度为 0 的点放入队列 
         }
         sort(ret.begin(), ret.end());
         return ret;
