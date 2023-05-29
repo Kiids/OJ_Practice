@@ -22,24 +22,25 @@ public:
         string ret;
         for (int i = 0; i < n - 1; i++)
         {
-            if (i + 1 < n && s[i + 1] == s[i])
+            if (i + 1 < n && s[i + 1] == s[i])  // 当回文串偶数长度
             {
                 int l = i, r = i + 1;
                 while (l >= 0 && r < n)
                 {
-                    if (s[l] != s[r])
+                    if (s[l] != s[r])           // 回文终止
                         break;
-                    r++,l--;
+                    r++;
+					l--;
                 }
                 if (r - l - 1 > ret.size())
                     ret = s.substr(l + 1, r - l - 1);
             }
-            if (i > 0 && s[i - 1] == s[i + 1])
+            if (i > 0 && s[i - 1] == s[i + 1])  // 当回文串奇数长度
             {
                 int l = i - 1, r = i + 1;
                 while (l >= 0 && r < n)
                 {
-                    if (s[l] != s[r])
+                    if (s[l] != s[r])           // 回文终止
                         break;
                     r++;
                     l--;
