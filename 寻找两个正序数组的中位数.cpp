@@ -22,9 +22,10 @@ class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int len = nums1.size() + nums2.size();
-        const int k = len / 2;
+        const int k = len / 2;   // 无论奇偶数，返回的index都是(len - 1) / 2 和 len / 2, 如果是奇数两个index相等，偶数就是一前一后
         int i = 0, j = 0;
-        double ret1 = 0, ret2 = 0;
+        double ret1 = 0, ret2 = 0;  // 记录一前一后
+        // push_back(INT_MAX)可以不用判断nums1或者nums2溢出的情况
         nums1.push_back(INT_MAX);
         nums2.push_back(INT_MAX);
         while (i + j <= k)
