@@ -21,7 +21,7 @@
 class Solution {
 public:
     int kConcatenationMaxSum(vector<int>& arr, int k) {
-        vector<long long> v(2 * arr.size());
+        vector<long long> v(2 * arr.size());  // Ç°×ººÍ 
         long long ret = 0, mod = 1e9+7, sum = 0, max_sum = 0, min = 0, n = arr.size();
         for (auto a: arr)
         {
