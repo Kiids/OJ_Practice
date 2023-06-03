@@ -1,5 +1,5 @@
 /*
-给定两个大小分别为 m 和 n 的正序（从小到大）数组?nums1 和?nums2。请你找出并返回这两个正序数组的 中位数 。
+给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。
 算法的时间复杂度应该为 O(log (m+n)) 。
 示例 1：
 输入：nums1 = [1,3], nums2 = [2]
@@ -34,5 +34,21 @@ public:
             ret2 = nums1[i] <= nums2[j] ? nums1[i++] : nums2[j++];
         }
         return len % 2 == 1 ? ret2 : (ret1 + ret2) / 2;
+    }
+};
+
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size(), n = nums2.size(), k = 0, i = 0, j = 0;
+        vector<int> v(m + n, 0);
+        while (i < m && j < n)
+            v[k++] = nums1[i] < nums2[j] ? nums1[i++] : nums2[j++];
+        while (i < m)
+            v[k++] = nums1[i++];
+        while (j < n)
+            v[k++] = nums2[j++];
+        return k % 2 ? v[k / 2] : (v[k / 2] + v[k / 2 - 1]) / 2.0;  // 判断奇偶
     }
 };
