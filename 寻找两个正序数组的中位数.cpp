@@ -52,3 +52,19 @@ public:
         return k % 2 ? v[k / 2] : (v[k / 2] + v[k / 2 - 1]) / 2.0;  // ≈–∂œ∆Ê≈º
     }
 };
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size(), n = nums2.size(), i = 0, j = 0, l = 0, r = 0;
+        for (int x = 0; x <= (m + n) / 2; x++)
+        {
+            l = r;
+            if (i < m && (j >= n || nums1[i] < nums2[j]))
+                r = nums1[i++];
+            else
+                r = nums2[j++];
+        }
+        return (m + n) & 1 ? r : (l + r) / 2.0;
+    }
+};
