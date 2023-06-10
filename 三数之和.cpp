@@ -30,7 +30,7 @@ public:
         vector<vector<int>> v;
         sort(nums.begin(), nums.end());
         int n = nums.size() - 1;
-        for (int i = 0; i < n - 1; i++)
+        for (int i = 0; i < n - 1; i++)                      // 遍历到数组倒数第三个数
         {
             if (nums[i] == 0)
             {
@@ -38,7 +38,7 @@ public:
                     v.push_back({0, 0, 0});
                 break;
             }
-            if (i > 0 && nums[i] == nums[i - 1])
+            if (i > 0 && nums[i] == nums[i - 1])             // 去重，每次循环第一个数不同
                 continue;
 
             int l = i + 1, r = n;
@@ -51,12 +51,12 @@ public:
                 else
                 {
                     v.push_back({nums[i], nums[l], nums[r]});
-                    if (nums[l] == nums[r])
+                    if (nums[l] == nums[r])                  // 去重，后两个相同结束循环
                         break;
-                    while (l < r && nums[l + 1] == nums[l])
+                    while (l < r && nums[l + 1] == nums[l])  // 找到下一个比l大的数
                         l++;
                     l++;
-                    while (l < r && nums[r - 1] == nums[r])
+                    while (l < r && nums[r - 1] == nums[r])  // 找到下一个比r小的数
                         r--;
                     r--;
                 }
