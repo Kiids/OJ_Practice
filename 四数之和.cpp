@@ -23,13 +23,13 @@ public:
         sort(nums.begin(), nums.end());
         for (int k = 0; k < nums.size(); k++)
         {
-            if (nums[k] > target && nums[k] >= 0)
+            if (nums[k] > target && nums[k] >= 0)  // 剪枝
             	break;
-            if (k > 0 && nums[k] == nums[k - 1])
+            if (k > 0 && nums[k] == nums[k - 1])  // 对nums[k]去重
                 continue;
             for (int i = k + 1; i < nums.size(); i++)
             {
-                if (nums[k] + nums[i] > target && nums[k] + nums[i] >= 0)
+                if (nums[k] + nums[i] > target && nums[k] + nums[i] >= 0)  // 剪枝
                     break;
                 if (i > k + 1 && nums[i] == nums[i - 1])
                     continue;
@@ -45,10 +45,11 @@ public:
                     else
                     {
                         v.push_back(vector<int>{nums[k], nums[i], nums[left], nums[right]});
-                        while (right > left && nums[right] == nums[right - 1])
+                        while (right > left && nums[right] == nums[right - 1])  // 对nums[right]去重
                             right--;
-                        while (right > left && nums[left] == nums[left + 1])
+                        while (right > left && nums[left] == nums[left + 1])  // 对nums[left]去重
                             left++;
+                        // 找到答案时，双指针收缩
                         right--;
                         left++;
                     }
