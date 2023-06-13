@@ -47,7 +47,7 @@ public:
                         v.push_back(vector<int>{nums[k], nums[i], nums[left], nums[right]});
                         while (right > left && nums[right] == nums[right - 1])  // 对nums[right]去重
                             right--;
-                        while (right > left && nums[left] == nums[left + 1])  // 对nums[left]去重
+                        while (right > left && nums[left] == nums[left + 1])    // 对nums[left]去重
                             left++;
                         // 找到答案时，双指针收缩
                         right--;
@@ -59,3 +59,5 @@ public:
         return v;
     }
 };
+
+// 四数之和，和三数之和都使用双指针法, 基本解法在三数之和的基础上再套一层for循环
