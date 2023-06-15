@@ -34,7 +34,7 @@ public:
 
 
 class Solution {
-    int partition(vector<int>& v, int l, int r)
+    int partition(vector<int>& v, int l, int r)  // ×óÓÒÍÚ¿Ó»¥Ìî
     {
         int x = v[l], t = l;
         while (l < r)
