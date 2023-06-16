@@ -34,7 +34,7 @@ public:
 
 
 class Solution {
-    int partition(vector<int>& v, int l, int r)  // ×óÓÒÍÚ¿Ó»¥Ìî
+    int partition(vector<int>& v, int l, int r)  // ×óÓÒ½»»»
     {
         int x = v[l], t = l;
         while (l < r)
@@ -47,6 +47,22 @@ class Solution {
                 swap(v[l], v[r]);
         }
         swap(v[t], v[l]);
+        return l;
+    }
+    
+    int partition2(vector<int>& v, int l, int r)  // ×óÓÒÍÚ¿Ó»¥Ìî 
+    {
+        int x = v[l];
+        while (l < r)
+        {
+            while (l < r && v[r] <= x)
+                r--;
+            v[l] = v[r];
+            while (l < r && v[l] >= x)
+                l++;
+            v[r] = v[l];
+        }
+        v[l] = x;
         return l;
     }
 
@@ -70,3 +86,4 @@ public:
     }
 };
 // ¿ìËÙÅÅĞò  Ê±¼ä¸´ÔÓ¶È O(n)
+
