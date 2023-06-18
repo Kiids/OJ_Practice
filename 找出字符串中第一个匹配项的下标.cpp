@@ -15,10 +15,10 @@ haystack 和 needle 仅由小写英文字符组成
 */
 
 class Solution {
-    void getNext(int* next, const string& s)
+    void getNext(int* next, const string& s)  // 填充 next 数组
     {
         int j = 0;
-        next[0] = 0;
+        next[0] = 0;  // 前缀表的首元素 0 ，字符串的首位没有对应的前缀
         for (int i = 1; i < s.size(); i++)
         {
             while (j > 0 && s[i] != s[j])
@@ -33,8 +33,8 @@ public:
         if (needle.size() == 0)
             return 0;
 
-        int next[needle.size()];
-        getNext(next, needle);
+        int next[needle.size()];  // 定义 next 数组 - 前缀表
+        getNext(next, needle);  // 填充前缀表
         int j = 0;
         for (int i = 0; i < haystack.size(); i++)
         {
