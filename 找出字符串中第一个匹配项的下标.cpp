@@ -22,7 +22,7 @@ class Solution {
         for (int i = 1; i < s.size(); i++)
         {
             while (j > 0 && s[i] != s[j])
-                j = next[j - 1];
+                j = next[j - 1];  // 前一位对应的回退位置
             if (s[i] == s[j])
                 j++;
             next[i] = j;
@@ -35,13 +35,13 @@ public:
 
         int next[needle.size()];  // 定义 next 数组 - 前缀表
         getNext(next, needle);  // 填充前缀表
-        int j = 0;
-        for (int i = 0; i < haystack.size(); i++)
+        int j = 0;  // j 指向前缀末尾位置
+        for (int i = 0; i < haystack.size(); i++)  // i 指向后缀末尾位置
         {
-            while (j > 0 && haystack[i] != needle[j])
-                j = next[j - 1];
-            if (haystack[i] == needle[j])
-                j++;
+            while (j > 0 && haystack[i] != needle[j])  // 前后缀不匹配
+                j = next[j - 1];   // j 回退到 next 数组前一个位置所指向的值
+            if (haystack[i] == needle[j])  // 前后缀匹配
+                j++;  // i、j 后移
             if (j == needle.size())
                 return i - needle.size() + 1;
         }
