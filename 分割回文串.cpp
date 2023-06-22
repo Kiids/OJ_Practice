@@ -22,10 +22,10 @@ class Solution {
             v.push_back(path);
             return;
         }
-        for (int i = index; i < n; i++)
+        for (int i = index; i < n; i++)  // 寻找以 index 为起点的回文串
         {
             int j = index, k = i, flag = 1;
-            while (j <= k)
+            while (j <= k)  // 判断 s[index]~s[i] 是否为回文串
             {
                 if (s[j] != s[k])
                 {
