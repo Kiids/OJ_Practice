@@ -21,7 +21,8 @@ class Solution {
         if (x < 0 || x >= v.size() || y < 0 || y >= v[0].size() || v[x][y] != 'O')
             return;
         v[x][y] = '1';
-        for (int i = 0; i < 4; i++) BFS(v, x + a[i], y + b[i]);
+        for (int i = 0; i < 4; i++)
+			BFS(v, x + a[i], y + b[i]);
     }
 public:
     void solve(vector<vector<char>>& board) {
