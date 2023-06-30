@@ -61,7 +61,7 @@ public:
         R->left = L;
     }
     
-    int get(int key) {
+    int get(int key) {  // 时间复杂度O(1)
         if (hash.count(key) == 0)
             return -1;
         auto p = hash[key];
@@ -70,7 +70,7 @@ public:
         return p->value;
     }
     
-    void put(int key, int value) {
+    void put(int key, int value) {  // 时间复杂度O(1)
         if (hash.count(key))
         {
             auto p = hash[key];
